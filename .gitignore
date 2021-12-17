@@ -2,7 +2,6 @@
 node_modules
 /dist
 
-
 # local env files
 .env.local
 .env.*.local
@@ -21,3 +20,12 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Avoid accidental Sketch file upload 
+
+*.sketch
+
+# Avoid accidental XD or Figma upload if you convert the design file
+
+*.xd
+*.fig

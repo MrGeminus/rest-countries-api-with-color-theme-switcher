@@ -1,30 +1,40 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+	<div
+		:class="[
+			darkMode ? 'dark' : '',
+			'flex flex-col min-h-screen bg-background-light dark:bg-background-dark',
+		]"
+	>
+		<router-view @toggleDarkMode="toggleDarkMode"></router-view>
+	</div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { defineComponent, ref, onBeforeUnmount } from "vue";
+export default defineComponent({
+	name: "App",
+	setup() {
+		const darkMode = ref<boolean>(false);
+		const toggleDarkMode = () => {
+			darkMode.value
+				? (localStorage.theme = "light")
+				: (localStorage.theme = "dark");
+			darkMode.value = setTheme();
+		};
+		const setTheme = () => {
+			if (
+				localStorage.theme === "dark" ||
+				(!("theme" in localStorage) &&
+					window.matchMedia("(prefers-color-scheme: dark)").matches)
+			) {
+				return true;
+			}
+			return false;
+		};
+		onBeforeUnmount(() => localStorage.removeItem("countriesList"));
+		return { darkMode, toggleDarkMode };
+	},
+});
+</script>
 
-nav {
-  padding: 30px;
-}
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
