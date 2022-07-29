@@ -7,8 +7,8 @@
 			pl-11
 			pr-6
 			py-1.5
-			mt-7
-			ml-4
+			mt-8
+			ml-6
 			md:ml-16
 			mr-auto
 			rounded
@@ -25,7 +25,7 @@
 			before:absolute
 			before:top-2.5
 			before:left-5
-			before:w-7
+			before:w-4
 			before:h-4
 			before:bg-arrow-left-dark-icon
 			before:bg-cover

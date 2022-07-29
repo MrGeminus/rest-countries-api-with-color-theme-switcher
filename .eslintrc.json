@@ -1,0 +1,30 @@
+{
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        }
+    },
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "vue/setup-compiler-macros": true
+    },
+    "extends": [
+        "plugin:vue/vue3-recommended",
+        "@vue/eslint-config-typescript/recommended",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "@vue/eslint-config-prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "parser": "@typescript-eslint/parser",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "vue",
+        "@typescript-eslint",
+        "prettier"
+    ]
+}

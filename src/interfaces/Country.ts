@@ -9,7 +9,7 @@ interface Country {
     capital: string,
     topLevelDomain: any[] | null,
     currencies: any[] | null,
-    languages: any[] | null,
+    languages: string[] | null,
     borderCountries: string[] | null,
 }
 

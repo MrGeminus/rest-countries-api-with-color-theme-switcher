@@ -9,6 +9,7 @@
 			text-base
 			bg-elements-light
 			dark:bg-elements-dark
+			shadow-md
 		"
 	>
 		<h1 class="text-text-light dark:text-text-dark font-extrabold">

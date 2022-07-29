@@ -25,7 +25,7 @@ export const mutations: MutationTree<State> & Mutations = {
                 id: index + 1,
                 flag: country.flags.svg,
                 name: country.name.common,
-                nativeName: `${country.name.nativeName ? (Object.keys(country.name.nativeName)).map((item: string) => country.name.nativeName[item].official) : null}`,
+                nativeName: `${country.name.nativeName ? (Object.keys(country.name.nativeName)).map((item: string) => country.name.nativeName[item].common) : null}`,
                 population: country.population.toLocaleString('en'),
                 region: country.region,
                 subRegion: country.subregion,

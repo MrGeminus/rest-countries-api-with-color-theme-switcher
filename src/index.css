@@ -3,8 +3,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer utilities {   
-    .backgroundImage {     
-        dark: true;   
+
+@layer utilities {
+    .backgroundImage {
+        dark: true;
     }
 }

@@ -1,113 +1,154 @@
 <template>
 	<Header @toggleDarkMode="$emit('toggleDarkMode')" />
 	<Button />
-	<main class="grow py-7 lg:py-7 px-4 md:px-16">
+	<main class="grow py-7 lg:py-7 px-6 md:px-16">
 		<div
 			v-if="country"
-			class="mt-14 flex flex-col md:flex-row font-semibold font-nunitoSans"
+			class="mt-9 flex flex-col md:flex-row font-semibold font-nunitoSans"
 		>
 			<img
 				:src="country.flag"
 				:alt="`${country.name}'s flag`"
-				class="w-full md:w-5/12 md:h-96"
+				class="w-full h-60 md:w-5/12 md:h-96"
 			/>
 			<div
 				class="md:w-6/12 md:ml-24 flex flex-col justify-start lg:justify-center"
 			>
-				<h1 class="mt-9 lg:mt-0 text-3xl font-extrabold">{{ country.name }}</h1>
-				<div class="flex flex-col lg:flex-row">
-					<dl class="mt-4">
-						<div class="flex">
-							<dt>Native Name:</dt>
-							<dd class="ml-1 font-light">{{ country.nativeName }}</dd>
+				<h2 class="mt-9 lg:mt-0 text-2xl font-extrabold">{{ country.name }}</h2>
+				<dl class="flex flex-col">
+					<div class="flex flex-col lg:flex-row">
+						<div class="mt-4">
+							<div class="flex">
+								<dt>Native Name:</dt>
+								<dd class="ml-1 font-light">
+									{{ country.nativeName.toString().replace(/[,]/g, " ,") }}
+								</dd>
+							</div>
+							<div class="flex">
+								<dt>Population:</dt>
+								<dd class="ml-1 font-light">{{ country.population }}</dd>
+							</div>
+							<div class="flex">
+								<dt>Region:</dt>
+								<dd class="ml-1 font-light">{{ country.region }}</dd>
+							</div>
+							<div class="flex">
+								<dt>Sub Region:</dt>
+								<dd class="ml-1 font-light">{{ country.subRegion }}</dd>
+							</div>
+							<div class="flex">
+								<dt>Capital:</dt>
+								<dd class="ml-1 font-light">{{ country.capital }}</dd>
+							</div>
 						</div>
-						<div class="flex">
-							<dt>Population:</dt>
-							<dd class="ml-1 font-light">{{ country.population }}</dd>
-						</div>
-						<div class="flex">
-							<dt>Region:</dt>
-							<dd class="ml-1 font-light">{{ country.region }}</dd>
-						</div>
-						<div class="flex">
-							<dt>Sub Region:</dt>
-							<dd class="ml-1 font-light">{{ country.subRegion }}</dd>
-						</div>
-						<div class="flex">
-							<dt>Capital:</dt>
-							<dd class="ml-1 font-light">{{ country.capital }}</dd>
-						</div>
-					</dl>
-					<div>
-						<div class="mt-4 mx-4 flex">
-							<dt>Top Level Domain:</dt>
-							<dd>
-								<span
-									:key="topLevelDomain"
-									v-for="topLevelDomain in country.topLevelDomain"
-									class="ml-1"
-								>
-									{{ topLevelDomain }}
-								</span>
-								<span v-if="country.topLevelDomain.lenght > 1">, </span>
-							</dd>
-						</div>
-						<div class="mt-4 mx-4 flex">
-							<dt>Currencis:</dt>
-							<dd>
-								<span
-									:key="currency"
-									v-for="currency in country.currencies"
-									class="ml-1"
-								>
-									{{ currency }} </span
-								><span v-if="country.currencies.lenght > 1">, </span>
-							</dd>
-						</div>
-						<div class="mt-4 mx-4 flex">
-							<dt>Languages:</dt>
-							<dd>
-								<span
-									:key="language"
-									v-for="language in country.languages"
-									class="ml-1"
-									><span v-if="country.languages.lenght > 1"
-										>{{ language }},</span
-									>
-									<span v-else>{{ language }}</span>
-								</span>
-							</dd>
+						<div>
+							<div class="mt-4 flex">
+								<dt>Top Level Domain:</dt>
+								<dd>
+									<ul class="flex">
+										<li
+											:key="topLevelDomain"
+											v-for="topLevelDomain in country.topLevelDomain"
+											class="ml-1 font-light"
+										>
+											{{ topLevelDomain
+											}}<span
+												v-if="
+													country.topLevelDomain.length > 1 &&
+													topLevelDomain !=
+														country.topLevelDomain[
+															country.topLevelDomain.length - 1
+														]
+												"
+												>,
+											</span>
+										</li>
+									</ul>
+								</dd>
+							</div>
+							<div class="mt-4 flex">
+								<dt>Currencis:</dt>
+								<dd>
+									<ul class="flex">
+										<li
+											:key="currency"
+											v-for="currency in country.currencies"
+											class="ml-1 font-light"
+										>
+											{{ currency
+											}}<span
+												v-if="
+													country.currencies.length > 1 &&
+													currency !=
+														country.currencies[country.currencies.length - 1]
+												"
+												>,
+											</span>
+										</li>
+									</ul>
+								</dd>
+							</div>
+							<div class="mt-4 flex">
+								<dt>Languages:</dt>
+								<dd>
+									<ul class="flex">
+										<li
+											:key="`${country.name}-${language}`"
+											v-for="language in country.languages"
+											class="ml-1 font-light"
+										>
+											{{ language
+											}}<span
+												v-if="
+													country.languages.length > 1 &&
+													language !=
+														country.languages[country.languages.length - 1]
+												"
+												>,</span
+											>
+										</li>
+									</ul>
+								</dd>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="mt-9">
-					<h3>Border Countries:</h3>
-					<ul
-						class="
-							mt-3
-							grid
-							gap-3
-							grid-flow-col
-							auto-cols-max
-							list-none
-							text-base
-						"
-					>
-						<router-link
-							:key="borderingCountry"
-							v-for="borderingCountry in country.borderCountries"
-							:to="{
-								name: 'DetailPage',
-								params: { countryName: borderingCountry },
-							}"
-							><li
-								class="w-32 px-3 py-1 rounded shadow-md bg-element text-center"
-							>
-								{{ borderingCountry }}
-							</li>
-						</router-link>
-					</ul>
-				</div>
+					<div class="mt-9">
+						<dt class="">Border Countries:</dt>
+						<dd>
+							<ul class="flex flex-wrap gap-2.5 mt-3 text-base list-none">
+								<router-link
+									:key="borderingCountry"
+									v-for="borderingCountry in country.borderCountries"
+									:to="{
+										name: 'DetailPage',
+										params: { countryName: borderingCountry },
+									}"
+									><li
+										class="
+											min-w-28
+											px-3
+											py-2
+											rounded
+											shadow-md
+											bg-elements-light
+											dark:bg-elements-dark
+											hover:bg-content-light hover:text-content-dark
+											dark:hover:bg-content-dark dark:hover:text-content-light
+											text-content-light
+											dark:text-content-dark
+											text-xsm
+											font-light
+											text-center
+											transition-colors
+										"
+									>
+										{{ borderingCountry }}
+									</li>
+								</router-link>
+							</ul>
+						</dd>
+					</div>
+				</dl>
 			</div>
 		</div>
 		<div class="m-auto" v-else>
