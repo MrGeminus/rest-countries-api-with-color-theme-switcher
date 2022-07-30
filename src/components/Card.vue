@@ -22,7 +22,8 @@
 		<h3 class="mt-4 mx-4 font-extrabold">{{ country.name }}</h3>
 		<ul class="mt-4 mx-4 list-none text-base">
 			<li>
-				Population: <span class="font-light">{{ country.population }}</span>
+				Population:
+				<span class="font-light">{{ country.population }}</span>
 			</li>
 			<li>
 				Region: <span class="font-light">{{ country.region }}</span>
@@ -34,15 +35,15 @@
 	</article>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
-import Country from "@/interfaces/Country";
+import { defineComponent } from 'vue'
+import Country from '../interfaces/Country'
 export default {
-	name: "Card",
+	name: 'Card',
 	props: {
 		country: {},
 	},
 	setup() {
-		return {};
+		return {}
 	},
-};
+}
 </script>
