@@ -1,4 +1,4 @@
-import Country from "@/interfaces/Country";
+import Country from "../interfaces/Country";
 
 export type State = {
     loading: boolean;
