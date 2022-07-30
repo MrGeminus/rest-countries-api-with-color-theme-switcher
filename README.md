@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/MrGeminus/REST-Countries-API](https://github.com/MrGeminus/REST-Countries-API)
-- Live Site URL: [https://mrgeminus-rest-countries-api.netlify.app/](https://mrgeminus-rest-countries-api.netlify.app/)
+- Solution URL: [https://github.com/MrGeminus/rest-countries-api-with-color-theme-switcher](https://github.com/MrGeminus/rest-countries-api-with-color-theme-switcher)
+- Live Site URL: [https://mrgeminus-rest-countries-api-with-color-theme-switcher.netlify.app/](https://mrgeminus-rest-countries-api-with-color-theme-switcher.netlify.app/)
 
 ## My process
 

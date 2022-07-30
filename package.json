@@ -23,11 +23,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MrGeminus/REST-Countries-API.git"
+    "url": "git+https://github.com/MrGeminus/rest-countries-api-with-color-theme-switcher.git"
   },
-  "homepage": "https://github.com/MrGeminus/REST-Countries-API#readme",
+  "homepage": "https://github.com/MrGeminus/rest-countries-api-with-color-theme-switcher#readme",
   "bugs": {
-    "url": "https://github.com/MrGeminus/REST-Countries-API/issues",
+    "url": "https://github.com/MrGeminus/rest-countries-api-with-color-theme-switcher/issues",
     "email": "support@mrgeminus.com"
   },
   "private": true,
