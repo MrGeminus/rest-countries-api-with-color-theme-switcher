@@ -1,26 +1,26 @@
 <template>
 	<header
 		class="
-			px-4
-			lg:px-16
-			py-8
 			flex
+			px-4
+			py-8
+			lg:px-16
 			font-nunitoSans
 			text-base
 			bg-elements-light
 			dark:bg-elements-dark
-			shadow-md
+			border-b-2 border-b-[#e5e7eb]
 		"
 	>
-		<h1 class="text-text-light dark:text-text-dark font-extrabold">
+		<h1 class="text-content-dark dark:text-content-light font-extrabold">
 			Where in the world?
 		</h1>
 		<button
 			class="
 				pl-7
 				ml-auto
-				text-text-light
-				dark:text-text-dark
+				text-content-dark
+				dark:text-content-light
 				font-semibold
 				bg-moon-light-icon
 				dark:bg-moon-dark-icon
@@ -35,6 +35,6 @@
 
 <script lang="ts">
 export default {
-	name: "Header",
-};
+	name: 'Header',
+}
 </script>

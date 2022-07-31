@@ -1,5 +1,5 @@
 {
-  "name": "rest-countries-api",
+  "name": "rest-countries-api-with-color-theme-switcher",
   "version": "2.0.0",
   "author": {
     "name": "MrGeminus",
@@ -18,7 +18,7 @@
     "ESLint",
     "Prettier",
     "Airbnb",
-    "Ip address tracker",
+    "REST Countries API with color theme switcher",
     "Frontend Mentor"
   ],
   "repository": {

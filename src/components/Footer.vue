@@ -1,20 +1,38 @@
 <template>
-	<footer class="flex flex-col flex-row-sm">
-		<p class="font-nunitoSans text-center">
+	<footer
+		class="
+			flex flex-col
+			sm:flex-row
+			justify-center
+			p-4
+			text-content-dark
+			dark:text-content-light
+			text-base
+			font-nunitoSans
+			text-center
+			bg-elements-light
+			dark:bg-elements-dark
+			border-t-2 border-t-[#e5e7eb]
+		"
+	>
+		<p>
 			Challenge by
 			<a
-				class="hover:underline"
+				class="underline hover:no-underline"
 				href="https://www.frontendmentor.io?ref=challenge"
 				target="_blank"
-				rel="noopener"
+				rel="noopener noreferrer external"
 				>Frontend Mentor</a
 			>.
 		</p>
-
-		<p>
+		<p class="sm:ml-1">
 			Coded by
-			<a class="hover:underline" href="#" target="_blank" rel="noopener"
-				>Uros Tomic </a
+			<a
+				class="underline hover:no-underline"
+				href="https://mrgeminus.com/"
+				target="_blank"
+				rel="noopener noreferrer author external"
+				>MrGeminus</a
 			>.
 		</p>
 	</footer>
