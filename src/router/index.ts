@@ -1,24 +1,24 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomePage from '../views/HomePage.vue';
 import DetailPage from '../views/DetailPage.vue';
-import NotFoundPage from '../views/NotFoundPage.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/REST-Countries-API',
+    path: '/',
     name: 'HomePage',
     component: HomePage
   },
   {
-    path: '/REST-Countries-API/:countryName',
+    path: '/country/:countryName',
     name: 'DetailPage',
     component: DetailPage,
     props: true
   },
   {
     path: '/:catchAll(.*)',
-    name: 'NotFoundPage',
-    component: NotFoundPage
+    name: 'NotFound',
+    component: NotFound
   },
 ];
 
