@@ -24,15 +24,11 @@
 		<div v-else>
 			<ul
 				class="
-					grid grid-cols-1
-					sm:grid-cols-2
-					lg:grid-cols-3
-					xl:grid-cols-4
-					2xl:grid-cols-5
+					grid grid-cols-home
 					gap-9
-					lg:gap-16
-					justify-items-center
-					lg:justify-items-start
+					md:gap-16
+					justify-center
+					w-full
 				"
 			>
 				<li :key="country.id" v-for="country in countriesList">

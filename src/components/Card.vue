@@ -1,7 +1,6 @@
 <template>
 	<article
 		class="
-			w-80
 			pb-11
 			font-nunitoSans
 			bg-element

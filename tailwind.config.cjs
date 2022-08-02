@@ -17,6 +17,9 @@ module.exports = {
       },
       fontFamily: {
         nunitoSans: ['Nunito Sans', 'sans-serif']
+      },
+      gridTemplateColumns: {
+        'home': 'repeat(auto-fit, 17.5rem)',
       }
     },
     colors: {
