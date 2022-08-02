@@ -2,7 +2,19 @@
 	<Button />
 	<main class="grow py-7 lg:py-7 px-6 md:px-16 shadow-md">
 		<div
-			v-if="country"
+			v-if="
+				country &&
+				country?.name &&
+				country?.nativeName &&
+				country?.flag &&
+				country?.capital &&
+				country?.population &&
+				country?.region &&
+				country?.subRegion &&
+				country?.languages &&
+				country?.currencies &&
+				country?.topLevelDomain
+			"
 			class="mt-9 flex flex-col md:flex-row font-semibold font-nunitoSans"
 		>
 			<img
@@ -216,6 +228,5 @@ export default defineComponent({
 		)
 		return { country }
 	},
-	emits: ['toggleDarkMode'],
 })
 </script>
