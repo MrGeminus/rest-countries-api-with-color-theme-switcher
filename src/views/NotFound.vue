@@ -16,11 +16,7 @@
 			dark:bg-background-dark
 		"
 	>
-		<img
-			:src="illustration"
-			alt="Error code 404 illustration"
-			data-illustration
-		/>
+		<img :src="illustration" alt="Error code 404 illustration" />
 		<h2 class="mt-9 text-2xl font-semibold">Page Not Found!</h2>
 		<p class="mt-4 text-base font-light font-semibold">
 			Sorry, that page never returned from a walk around Novi Sad.
@@ -49,7 +45,7 @@
 	</main>
 </template>
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref, computed, watchEffect } from 'vue'
 import { useStore } from '../store'
 export default defineComponent({
 	name: 'NotFound',
@@ -61,14 +57,10 @@ export default defineComponent({
 		const illustration = computed(() =>
 			theme.value === 'dark'
 				? new URL('../assets/page_not_found-light.svg', import.meta.url)
+						.href
 				: new URL('../assets/page_not_found-dark.svg', import.meta.url)
+						.href
 		)
-
-		const imgElement = document.querySelector(
-			'[illustration]'
-		) as HTMLImageElement
-
-		if (imgElement) imgElement.src = `${illustration.value}`
 
 		return { illustration }
 	},
