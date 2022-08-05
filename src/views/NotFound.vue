@@ -17,9 +17,9 @@
 		"
 	>
 		<img
-			class=""
-			src="../assets/page_not_found-light.svg"
+			:src="illustration"
 			alt="Error code 404 illustration"
+			data-illustration
 		/>
 		<h2 class="mt-9 text-2xl font-semibold">Page Not Found!</h2>
 		<p class="mt-4 text-base font-light font-semibold">
@@ -49,8 +49,28 @@
 	</main>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
+import { useStore } from '../store'
 export default defineComponent({
 	name: 'NotFound',
+	setup() {
+		const store = useStore()
+
+		const theme = ref(computed(() => store.state.theme.theme))
+
+		const illustration = computed(() =>
+			theme.value === 'dark'
+				? new URL('../assets/page_not_found-light.svg', import.meta.url)
+				: new URL('../assets/page_not_found-dark.svg', import.meta.url)
+		)
+
+		const imgElement = document.querySelector(
+			'[illustration]'
+		) as HTMLImageElement
+
+		if (imgElement) imgElement.src = `${illustration.value}`
+
+		return { illustration }
+	},
 })
 </script>

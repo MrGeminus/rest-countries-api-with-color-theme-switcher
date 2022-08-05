@@ -35,7 +35,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import Country from '../interfaces/Country'
+import { Country } from '../types'
 export default {
 	name: 'Card',
 	props: {

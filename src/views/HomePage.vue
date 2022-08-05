@@ -46,9 +46,9 @@
 	</main>
 </template>
 <script lang="ts">
-import { defineComponent, computed, onMounted } from 'vue'
-import { ActionTypes } from '../store/actions'
+import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '../store'
+import { CountryGetterTypes } from '../store/enums'
 import Searchbar from '../components/Searchbar.vue'
 import Card from '../components/Card.vue'
 import RegionFilter from '../components/RegionFilter.vue'
@@ -61,20 +61,29 @@ export default defineComponent({
 	},
 	setup() {
 		const store = useStore()
-		let countriesList = computed(() => store.state.displayedCountriesList)
-		const loading = computed(() => store.state.loading)
-		if (store.state.displayedCountriesList.length == 0) {
-			onMounted(() => store.dispatch(ActionTypes.GET_FULL_COUNTRIES_LIST))
-		}
+		let query = ref('')
+		let region = ref('worldwide')
+		let countriesList = computed(() => {
+			if (query.value !== '')
+				return store.getters[CountryGetterTypes.GET_COUNTRIES_BY_NAME](
+					query.value
+				)
+			else if (region.value !== 'worldwide')
+				return store.getters[
+					CountryGetterTypes.GET_COUNTRIES_BY_REGION
+				](region.value)
+			else return store.state.country.countryList
+		})
+
+		let loading = computed(() => store.state.country.loading)
 		const filterCountiesByName = (searchQuery: string): void => {
-			store.dispatch(ActionTypes.FILTER_COUNTRIES_BY_NAME, searchQuery)
+			query.value = searchQuery
 		}
+
 		const filterCountiesByRegion = (selectedRegion: string): void => {
-			store.dispatch(
-				ActionTypes.FILTER_COUNTRIES_BY_REGION,
-				selectedRegion
-			)
+			region.value = selectedRegion
 		}
+
 		return {
 			loading,
 			countriesList,

@@ -26,7 +26,7 @@
 				dark:bg-moon-dark-icon
 				bg-1 bg-no-repeat bg-left-center
 			"
-			@click="$emit('toggleDarkMode')"
+			@click="$emit('toggleTheme')"
 		>
 			Dark Mode
 		</button>

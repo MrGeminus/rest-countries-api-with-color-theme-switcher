@@ -211,7 +211,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, watchEffect } from 'vue'
-import { ActionTypes } from '../store/actions'
+import { CountryGetterTypes } from '../store/enums'
 import { useStore } from '../store'
 import Button from '../components/Button.vue'
 export default defineComponent({
@@ -222,10 +222,21 @@ export default defineComponent({
 	props: ['countryName'],
 	setup(props: any) {
 		const store = useStore()
-		const country = computed(() => store.state.country)
-		watchEffect(() =>
-			store.dispatch(ActionTypes.GET_COUNTRY_BY_NAME, props.countryName)
+		let country = computed(() =>
+			store.getters[CountryGetterTypes.GET_COUNTRY_BY_NAME](
+				props.countryName
+			)
 		)
+
+		watchEffect(
+			() =>
+				(country = computed(() =>
+					store.getters[CountryGetterTypes.GET_COUNTRY_BY_NAME](
+						props.countryName
+					)
+				))
+		)
+
 		return { country }
 	},
 })

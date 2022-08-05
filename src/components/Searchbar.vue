@@ -6,7 +6,11 @@
 			md:w-2/5
 			py-4
 			px-20
-			bg-elements-light bg-search-light-icon bg-1.3 bg-left-sm bg-no-repeat
+			bg-elements-light
+			bg-search-light-icon
+			bg-1.3
+			bg-left-sm
+			bg-no-repeat
 			dark:bg-elements-dark dark:bg-search-dark-icon
 			text-base
 			font-light font-nunitoSans
@@ -20,13 +24,13 @@
 	/>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from 'vue'
 export default defineComponent({
-	name: "Searchbar",
-	data() {
-		return {
-			searchQuarry: "",
-		};
+	name: 'Searchbar',
+	setup() {
+		const searchQuarry = ref<String>('')
+
+		return { searchQuarry }
 	},
-});
+})
 </script>

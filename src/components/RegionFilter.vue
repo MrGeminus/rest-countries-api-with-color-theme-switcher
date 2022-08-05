@@ -29,16 +29,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from 'vue'
 export default defineComponent({
-	name: "RegionFilter",
-	data() {
-		return {
-			selectedRegion: "Filter by Region",
-		};
-	},
+	name: 'RegionFilter',
+
 	setup() {
-		return {};
+		const selectedRegion = ref<String>('worldwide')
+
+		return { selectedRegion }
 	},
-});
+})
 </script>

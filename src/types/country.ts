@@ -1,4 +1,4 @@
-interface Country {
+export interface Country {
     id: number,
     flag: string,
     name: string,
@@ -6,11 +6,9 @@ interface Country {
     population: string,
     region: string,
     subRegion: string,
-    capital: string,
-    topLevelDomain: any[] | null,
-    currencies: any[] | null,
+    capital: string | null,
+    topLevelDomain: string[] | null,
+    currencies: string[] | null,
     languages: string[] | null,
     borderCountries: string[] | null,
 }
-
-export default Country

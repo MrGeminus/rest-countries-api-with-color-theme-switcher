@@ -1,18 +1,20 @@
 <template>
 	<div
 		:class="[
-			darkMode ? 'dark' : '',
+			theme === 'dark' ? 'dark' : '',
 			'flex flex-col min-h-screen bg-background-light dark:bg-background-dark',
 		]"
 	>
-		<Header @toggleDarkMode="toggleDarkMode" />
+		<Header @toggleTheme="toggleTheme" />
 		<router-view></router-view>
 		<Footer />
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onBeforeUnmount } from 'vue'
+import { defineComponent, ref, onMounted, computed } from 'vue'
+import { useStore } from './store'
+import { CountryActionTypes, ThemeActionTypes } from './store/enums'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 export default defineComponent({
@@ -22,25 +24,22 @@ export default defineComponent({
 		Footer,
 	},
 	setup() {
-		const darkMode = ref<boolean>(false)
-		const toggleDarkMode = () => {
-			darkMode.value
-				? (localStorage.theme = 'light')
-				: (localStorage.theme = 'dark')
-			darkMode.value = setTheme()
-		}
-		const setTheme = () => {
-			if (
-				localStorage.theme === 'dark' ||
-				(!('theme' in localStorage) &&
-					window.matchMedia('(prefers-color-scheme: dark)').matches)
-			) {
-				return true
+		const store = useStore()
+		const theme = ref(computed(() => store.state.theme.theme))
+		const toggleTheme = () => {
+			if (theme.value === 'dark') {
+				localStorage.theme = 'light'
+				store.dispatch(ThemeActionTypes.UPDATE_THEME)
+			} else {
+				localStorage.theme = 'dark'
+				store.dispatch(ThemeActionTypes.UPDATE_THEME)
 			}
-			return false
 		}
-		onBeforeUnmount(() => localStorage.removeItem('countriesList'))
-		return { darkMode, toggleDarkMode }
+		onMounted(() => {
+			store.dispatch(ThemeActionTypes.UPDATE_THEME)
+			store.dispatch(CountryActionTypes.FETCH_COUNTRY_LIST)
+		})
+		return { theme, toggleTheme }
 	},
 })
 </script>
