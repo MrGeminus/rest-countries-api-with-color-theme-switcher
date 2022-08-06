@@ -8,7 +8,7 @@
 			shadow-md
 			transform
 			transition-transform
-			hover:rotate-3 hover:scale-105
+			hover:scale-105
 		"
 	>
 		<figure class="block w-full h-40">

@@ -7,8 +7,8 @@
 			p-4
 			text-content-dark
 			dark:text-content-light
-			text-base
-			font-nunitoSans
+			text-sm
+			font-semibold font-nunitoSans
 			text-center
 			bg-elements-light
 			dark:bg-elements-dark
@@ -18,7 +18,13 @@
 		<p>
 			Challenge by
 			<a
-				class="underline hover:no-underline"
+				class="
+					underline
+					hover:no-underline
+					outline-none
+					focus-within:outline-elements-dark
+					dark:focus-within:outline-elements-light
+				"
 				href="https://www.frontendmentor.io?ref=challenge"
 				target="_blank"
 				rel="noopener noreferrer external"
@@ -28,7 +34,13 @@
 		<p class="sm:ml-1">
 			Coded by
 			<a
-				class="underline hover:no-underline"
+				class="
+					underline
+					hover:no-underline
+					outline-none
+					focus-within:outline-elements-dark
+					dark:focus-within:outline-elements-light
+				"
 				href="https://mrgeminus.com/"
 				target="_blank"
 				rel="noopener noreferrer author external"

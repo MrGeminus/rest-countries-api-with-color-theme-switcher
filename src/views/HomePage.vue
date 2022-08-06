@@ -22,26 +22,38 @@
 			</h2>
 		</div>
 		<div v-else>
-			<ul
-				class="
-					grid grid-cols-home
-					gap-9
-					md:gap-16
-					justify-center
-					w-full
-				"
-			>
-				<li :key="country.id" v-for="country in countriesList">
-					<router-link
-						:to="{
-							name: 'DetailPage',
-							params: { countryName: country.name },
-						}"
-					>
-						<Card :country="country" />
-					</router-link>
-				</li>
-			</ul>
+			<div v-if="countriesList.length === 0">
+				<h2 class="text-2xl font-semibold font-nunitoSans">
+					Sorry, no countries found.
+				</h2>
+			</div>
+			<div v-else>
+				<ul
+					class="
+						grid grid-cols-home
+						gap-9
+						md:gap-16
+						justify-center
+						w-full
+					"
+				>
+					<li :key="country.id" v-for="country in countriesList">
+						<router-link
+							class="
+								outline-none
+								focus-within:outline-elements-dark
+								dark:focus-within:outline-elements-light
+							"
+							:to="{
+								name: 'DetailPage',
+								params: { countryName: country.name },
+							}"
+						>
+							<Card :country="country" />
+						</router-link>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</main>
 </template>

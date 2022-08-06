@@ -32,27 +32,36 @@ module.exports = {
     minWidth: {
       '28': '6.5rem',
     },
+    maxWidth: {
+      '29': '13rem',
+      '30': '30rem',
+    },
     backgroundSize: {
-      '1.3': '1.3rem',
       '1': '1rem',
+      '0.65': '0.65rem',
     },
     backgroundPosition: {
+      'right-xs': 'right 1.25rem center',
       'left-sm': 'left 1.85rem center',
       'left-center': 'left center',
     },
     fontSize: {
       'xs': '.75rem',
-      'xsm': '.812rem',
+      'xsm': '.81rem',
       'sm': '.875rem',
       'base': '1rem',
       'lg': '1.125rem',
       'xl': '1.25rem',
       '2xl': '1.5rem',
+      '2.5xl': '1.655rem',
       '3xl': '1.875rem',
       '4xl': '2.25rem',
       '5xl': '3rem',
       '6xl': '4rem',
       '7xl': '5rem',
+    },
+    variants: {
+      outline: ['responsive', 'focus', 'focus-within'],
     },
   },
   plugins: [],
