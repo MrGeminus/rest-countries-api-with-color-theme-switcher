@@ -32,7 +32,7 @@
 				"
 				type="button"
 				role="switch"
-				:aria-checked="[theme === 'dark']"
+				:ariaChecked="[theme === 'dark']"
 				@click="toggleTheme"
 			>
 				Dark Mode
