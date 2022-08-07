@@ -1,6 +1,22 @@
 <template>
-	<Button />
-	<main class="grow py-7 lg:py-7 px-6 md:px-16 shadow-md">
+	<main
+		id="main"
+		class="
+			flex flex-col
+			grow
+			py-7
+			lg:py-7
+			px-6
+			md:px-16
+			text-content-dark
+			dark:text-content-light
+			text-base
+			bg-background-light
+			dark:bg-background-dark
+			shadow-md
+		"
+	>
+		<Button />
 		<div
 			v-if="
 				country &&
@@ -183,12 +199,12 @@
 											shadow-md
 											bg-elements-light
 											dark:bg-elements-dark
-											hover:bg-content-light
-											hover:text-content-dark
-											dark:hover:bg-content-dark
-											dark:hover:text-content-light
-											text-content-light
-											dark:text-content-dark
+											hover:bg-elements-dark
+											dark:hover:bg-elements-light
+											text-content-dark
+											dark:text-content-light
+											hover:text-content-light
+											dark:hover:text-content-dark
 											text-xsm
 											font-light
 											text-center

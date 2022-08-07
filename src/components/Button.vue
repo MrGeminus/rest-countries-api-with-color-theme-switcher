@@ -13,14 +13,16 @@
 			mr-auto
 			rounded
 			shadow-md
-			bg-elements-light
-			dark:bg-elements-dark
-			hover:bg-content-light hover:text-content-dark
-			dark:hover:bg-content-dark dark:hover:text-content-light
-			text-content-light
-			dark:text-content-dark
+			text-content-dark
+			dark:text-content-light
+			hover:text-content-light
+			dark:hover:text-content-dark
 			text-base
 			font-light font-nunitoSans
+			bg-elements-light
+			dark:bg-elements-dark
+			hover:bg-elements-dark
+			dark:hover:bg-elements-light
 			transition-colors
 			before:absolute
 			before:top-2.5
@@ -38,15 +40,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import router from "../router";
+import { defineComponent } from 'vue'
+import router from '../router'
 export default defineComponent({
-	name: "Button",
+	name: 'Button',
 	setup() {
 		const goBack = (): void => {
-			router.go(-1);
-		};
-		return { goBack };
+			router.go(-1)
+		}
+		return { goBack }
 	},
-});
+})
 </script>

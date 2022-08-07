@@ -21,14 +21,14 @@
 			rounded
 			shadow-md
 			outline-none
-			focus-within:outline-elements-dark
-			dark:focus-within:outline-elements-light
+			focus-visible:outline-elements-dark
+			dark:focus-visible:outline-elements-light
 			appearance-none
 		"
 		name="filter"
 		id="filter"
 		v-model="selectedRegion"
-		@change="$emit('myfilter', selectedRegion)"
+		@change="$emit('filter', selectedRegion)"
 	>
 		<option
 			id="frst-option"
@@ -85,7 +85,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 export default defineComponent({
-	name: 'RegionFilter',
+	name: 'Filter',
 
 	setup() {
 		const selectedRegion = ref<String>('worldwide')

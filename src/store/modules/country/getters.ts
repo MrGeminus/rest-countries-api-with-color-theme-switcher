@@ -6,7 +6,7 @@ import { CountryGetterTypes } from '../../enums'
 
 export const getters: GetterTree<CountryStateTypes, RootStateTypes> & CountryGetters = {
     [CountryGetterTypes.GET_COUNTRY_BY_NAME]: (state: CountryStateTypes) => (name: string): Country => {
-        return state.countryList.filter(country => country.name === name)[0]
+        return state.countryList.filter(country => country.name.toLocaleLowerCase() === name.toLocaleLowerCase())[0]
     },
     [CountryGetterTypes.GET_COUNTRIES_BY_NAME]: (state: CountryStateTypes) => (query: string): Country[] => {
         console.log(query)

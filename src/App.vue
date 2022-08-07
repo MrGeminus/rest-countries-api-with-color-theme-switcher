@@ -5,7 +5,8 @@
 			'flex flex-col min-h-screen bg-background-light dark:bg-background-dark',
 		]"
 	>
-		<Header @toggleTheme="toggleTheme" />
+		<a class="sr-only" href="#main">Skip to content</a>
+		<Header />
 		<router-view></router-view>
 		<Footer />
 	</div>
@@ -26,20 +27,11 @@ export default defineComponent({
 	setup() {
 		const store = useStore()
 		const theme = ref(computed(() => store.state.theme.theme))
-		const toggleTheme = () => {
-			if (theme.value === 'dark') {
-				localStorage.theme = 'light'
-				store.dispatch(ThemeActionTypes.UPDATE_THEME)
-			} else {
-				localStorage.theme = 'dark'
-				store.dispatch(ThemeActionTypes.UPDATE_THEME)
-			}
-		}
 		onMounted(() => {
 			store.dispatch(ThemeActionTypes.UPDATE_THEME)
 			store.dispatch(CountryActionTypes.FETCH_COUNTRY_LIST)
 		})
-		return { theme, toggleTheme }
+		return { theme }
 	},
 })
 </script>

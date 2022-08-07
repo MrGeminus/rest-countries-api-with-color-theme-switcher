@@ -1,8 +1,10 @@
 <template>
-	<form class="w-full md:max-w-30">
-		<label for="search" class="sr-only">Search for a country:</label>
+	<form
+		class="relative w-full md:max-w-30"
+		role="search"
+		@submit="handleSubmit"
+	>
 		<input
-			type="search"
 			id="search"
 			class="
 				w-full
@@ -29,20 +31,47 @@
 				focus:outline-elements-dark
 				dark:focus:outline-elements-light
 			"
+			type="search"
 			placeholder="Search for a country..."
 			v-model="searchQuarry"
-			@keyup="$emit('search', searchQuarry)"
+			required
+			aria-label="Search for a country"
 		/>
+		<button
+			class="
+				absolute
+				top-3.5
+				left-7.5
+				w-6
+				h-6
+				bg-search-icon-dark
+				dark:bg-search-icon-light
+				bg-1 bg-center bg-no-repeat
+				outline-none
+				focus-visible:outline-elements-dark
+				dark:focus-visible:outline-elements-light
+			"
+			type="submit"
+		>
+			<span class="sr-only">Search</span>
+		</button>
 	</form>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
+import Button from './Button.vue'
 export default defineComponent({
+	components: { Button },
 	name: 'Searchbar',
-	setup() {
+	setup(props, { emit }) {
 		const searchQuarry = ref<String>('')
 
-		return { searchQuarry }
+		const handleSubmit = (event: Event): void => {
+			event.preventDefault()
+			emit('search', searchQuarry.value)
+		}
+
+		return { searchQuarry, handleSubmit }
 	},
 })
 </script>

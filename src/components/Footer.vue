@@ -22,8 +22,8 @@
 					underline
 					hover:no-underline
 					outline-none
-					focus-within:outline-elements-dark
-					dark:focus-within:outline-elements-light
+					focus-visible:outline-elements-dark
+					dark:focus-visible:outline-elements-light
 				"
 				href="https://www.frontendmentor.io?ref=challenge"
 				target="_blank"
@@ -38,8 +38,8 @@
 					underline
 					hover:no-underline
 					outline-none
-					focus-within:outline-elements-dark
-					dark:focus-within:outline-elements-light
+					focus-visible:outline-elements-dark
+					dark:focus-visible:outline-elements-light
 				"
 				href="https://mrgeminus.com/"
 				target="_blank"

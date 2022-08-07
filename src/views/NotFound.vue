@@ -45,7 +45,7 @@
 	</main>
 </template>
 <script lang="ts">
-import { defineComponent, ref, computed, watchEffect } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { useStore } from '../store'
 export default defineComponent({
 	name: 'NotFound',

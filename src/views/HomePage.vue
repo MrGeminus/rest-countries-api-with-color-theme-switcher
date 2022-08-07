@@ -1,5 +1,6 @@
 <template>
 	<main
+		id="main"
 		class="
 			grow
 			flex flex-col
@@ -14,21 +15,37 @@
 	>
 		<div class="flex flex-col md:flex-row mb-9 md:justify-between">
 			<Searchbar @search="filterCountiesByName" />
-			<RegionFilter @myfilter="filterCountiesByRegion" />
+			<Filter @filter="filterCountiesByRegion" />
 		</div>
-		<div v-if="loading" class="flex-grow flex items-center justify-center">
-			<h2 class="text-4xl font-extrabold font-nunitoSans">
-				Loading, please wait...
-			</h2>
-		</div>
-		<div v-else>
-			<div v-if="countriesList.length === 0">
-				<h2 class="text-2xl font-semibold font-nunitoSans">
-					Sorry, no countries found.
-				</h2>
+		<section aria-live="polite">
+			<h2 id="results" class="sr-only">Search Results</h2>
+			<div
+				v-if="loading"
+				class="flex-grow flex items-center justify-center"
+			>
+				<p
+					class="
+						flex
+						items-center
+						justify-center
+						text-base
+						font-extrabold font-nunitoSans
+						space-x-2
+					"
+				>
+					Loading, please wait...
+				</p>
 			</div>
 			<div v-else>
+				<p
+					v-if="countriesList.length === 0"
+					class="text-base font-semibold font-nunitoSans"
+					aria-labelledby="results"
+				>
+					Sorry, there is no such country.
+				</p>
 				<ul
+					v-else
 					class="
 						grid grid-cols-home
 						gap-9
@@ -36,14 +53,19 @@
 						justify-center
 						w-full
 					"
+					aria-labelledby="results"
 				>
 					<li :key="country.id" v-for="country in countriesList">
 						<router-link
 							class="
 								outline-none
-								focus-within:outline-elements-dark
-								dark:focus-within:outline-elements-light
+								focus-visible:outline-elements-dark
+								dark:focus-visible:outline-elements-light
 							"
+							:aria-label="[
+								'Card linking to additional information about ' +
+									country.name,
+							]"
 							:to="{
 								name: 'DetailPage',
 								params: { countryName: country.name },
@@ -54,7 +76,7 @@
 					</li>
 				</ul>
 			</div>
-		</div>
+		</section>
 	</main>
 </template>
 <script lang="ts">
@@ -63,13 +85,13 @@ import { useStore } from '../store'
 import { CountryGetterTypes } from '../store/enums'
 import Searchbar from '../components/Searchbar.vue'
 import Card from '../components/Card.vue'
-import RegionFilter from '../components/RegionFilter.vue'
+import Filter from '../components/Filter.vue'
 export default defineComponent({
 	name: 'HomePage',
 	components: {
 		Searchbar,
 		Card,
-		RegionFilter,
+		Filter,
 	},
 	setup() {
 		const store = useStore()

@@ -4,7 +4,7 @@
 			flex
 			px-4
 			py-8
-			lg:px-16 lg:py-4
+			md:px-16 md:py-4
 			text-sm
 			font-nunitoSans
 			text-content-dark
@@ -17,26 +17,26 @@
 		<h1 class="md:text-2xl font-extrabold">Where in the world?</h1>
 		<div class="flex items-center ml-auto">
 			<button
-				id="themeSwitch"
 				class="
-					w-4
-					h-4
-					mr-3
-					text-content-dark
-					dark:text-content-light
+					pl-6
+					rounded
 					font-semibold
-					bg-moon-light-icon
-					dark:bg-moon-dark-icon
-					bg-1 bg-no-repeat bg-center
-					outline-none
-					focus-within:outline-elements-dark
-					dark:focus-within:outline-elements-light
+					bg-moon-icon-light
+					dark:bg-moon-icon-dark
+					bg-1 bg-no-repeat bg-left-center
+					outline-none outline-offset-8
+					hover:outline-elements-dark
+					dark:hover:outline-elements-light
+					focus-visible:outline-elements-dark
+					dark:focus-visible:outline-elements-light
 				"
-				@click="toggleTheme"
+				type="button"
 				role="switch"
-				:aria-checked="[theme === 'dark' ? true : false]"
-			></button>
-			<label for="themeSwitch" class="font-semibold">Dark Mode</label>
+				:aria-checked="[theme === 'dark']"
+				@click="toggleTheme"
+			>
+				Dark Mode
+			</button>
 		</div>
 	</header>
 </template>
