@@ -8,7 +8,8 @@
 			text-content-dark
 			dark:text-content-light
 			text-sm
-			font-semibold font-nunitoSans
+			lg:text-base
+			font-light font-nunitoSans
 			text-center
 			bg-elements-light
 			dark:bg-elements-dark

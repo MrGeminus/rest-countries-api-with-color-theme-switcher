@@ -4,13 +4,15 @@
 		class="
 			flex flex-col
 			grow
-			py-7
-			lg:py-7
-			px-6
+			pt-9
+			lg:pt-15
+			pb-15
+			px-7
 			md:px-16
 			text-content-dark
 			dark:text-content-light
-			text-base
+			text-sm
+			lg:text-base
 			bg-background-light
 			dark:bg-background-dark
 			shadow-md
@@ -31,67 +33,75 @@
 				country?.currencies &&
 				country?.topLevelDomain
 			"
-			class="mt-9 flex flex-col md:flex-row font-semibold font-nunitoSans"
+			class="
+				mt-15
+				flex flex-col
+				lg:flex-row
+				font-semibold font-nunitoSans
+			"
 		>
 			<img
 				:src="country.flag"
 				:alt="`${country.name}'s flag`"
-				class="w-full h-60 md:w-5/12 md:h-96"
+				class="w-full lg:w-6/12 xl:w-5/12 aspect-flag"
 			/>
 			<div
 				class="
-					md:w-6/12 md:ml-24
+					lg:w-6/12
+					xl:w-7/12
+					lg:ml-16
+					xl:ml-24
 					flex flex-col
 					justify-start
 					lg:justify-center
 				"
 			>
-				<h2 class="mt-9 lg:mt-0 text-2xl font-extrabold">
+				<h2 class="mt-9 lg:mt-0 text-1xl lg:text-3xl font-extrabold">
 					{{ country.name }}
 				</h2>
-				<dl class="flex flex-col">
-					<div class="flex flex-col lg:flex-row">
-						<div class="mt-4">
+				<dl class="flex flex-col mt-5">
+					<div class="flex flex-col xl:flex-row">
+						<div class="xl:w-7/12 pr-8">
 							<div class="flex">
-								<dt>Native Name:</dt>
+								<dt class="min-w-max">Native Name:</dt>
 								<dd class="ml-1 font-light">
 									{{
 										country.nativeName
 											.toString()
-											.replace(/[,]/g, ' ,')
+											.replace(/[,]/g, ', ')
 									}}
 								</dd>
 							</div>
-							<div class="flex">
-								<dt>Population:</dt>
+							<div class="flex mt-2">
+								<dt class="min-w-max">Population:</dt>
 								<dd class="ml-1 font-light">
 									{{ country.population }}
 								</dd>
 							</div>
-							<div class="flex">
-								<dt>Region:</dt>
+							<div class="flex mt-2">
+								<dt class="min-w-max">Region:</dt>
 								<dd class="ml-1 font-light">
 									{{ country.region }}
 								</dd>
 							</div>
-							<div class="flex">
-								<dt>Sub Region:</dt>
+							<div class="flex mt-2">
+								<dt class="min-w-max">Sub Region:</dt>
 								<dd class="ml-1 font-light">
 									{{ country.subRegion }}
 								</dd>
 							</div>
-							<div class="flex">
-								<dt>Capital:</dt>
+							<div class="flex mt-2">
+								<dt class="min-w-max">Capital:</dt>
 								<dd class="ml-1 font-light">
 									{{ country.capital }}
 								</dd>
 							</div>
 						</div>
-						<div>
-							<div class="mt-4 flex">
-								<dt>Top Level Domain:</dt>
+						<div class="xl:w-5/12 mt-9 xl:mt-0">
+							<div class="flex">
+								<dt class="min-w-max">Top Level Domain:</dt>
 								<dd>
-									<ul class="flex">
+									<ul class="flex flex-wrap">
 										<li
 											:key="topLevelDomain"
 											v-for="topLevelDomain in country.topLevelDomain"
@@ -115,10 +125,10 @@
 									</ul>
 								</dd>
 							</div>
-							<div class="mt-4 flex">
-								<dt>Currencis:</dt>
+							<div class="flex mt-2">
+								<dt class="min-w-max">Currencis:</dt>
 								<dd>
-									<ul class="flex">
+									<ul class="flex flex-wrap">
 										<li
 											:key="currency"
 											v-for="currency in country.currencies"
@@ -141,10 +151,10 @@
 									</ul>
 								</dd>
 							</div>
-							<div class="mt-4 flex">
-								<dt>Languages:</dt>
+							<div class="flex mt-2">
+								<dt class="min-w-max">Languages:</dt>
 								<dd>
-									<ul class="flex">
+									<ul class="flex flex-wrap">
 										<li
 											:key="`${country.name}-${language}`"
 											v-for="language in country.languages"
@@ -161,27 +171,39 @@
 																.length - 1
 														]
 												"
-												>,</span
-											>
+												>,
+											</span>
 										</li>
 									</ul>
 								</dd>
 							</div>
 						</div>
 					</div>
-					<div class="mt-9">
-						<dt class="">Border Countries:</dt>
+					<div
+						class="
+							flex flex-col
+							xl:flex-row xl:items-center
+							mt-9
+							xl:mt-16
+						"
+					>
+						<dt class="xl:mr-4 text-base">Border Countries:</dt>
 						<dd>
 							<ul
 								class="
 									flex flex-wrap
 									gap-2.5
-									mt-3
-									text-base
+									mt-4
+									xl:mt-0
 									list-none
 								"
 							>
 								<router-link
+									class="
+										outline-none
+										focus-visible:outline-elements-dark
+										dark:focus-visible:outline-elements-light
+									"
 									:key="borderingCountry"
 									v-for="borderingCountry in country.borderCountries"
 									:to="{
@@ -192,9 +214,9 @@
 									}"
 									><li
 										class="
-											min-w-28
+											min-w-6.1
 											px-3
-											py-2
+											py-1.5
 											rounded
 											shadow-md
 											bg-elements-light
@@ -205,7 +227,8 @@
 											dark:text-content-light
 											hover:text-content-light
 											dark:hover:text-content-dark
-											text-xsm
+											text-xs
+											lg:text-xls
 											font-light
 											text-center
 											transition-colors

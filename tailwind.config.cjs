@@ -26,7 +26,19 @@ module.exports = {
       spacing: {
         '4.5': '1.15rem',
         '7.5': '1.85rem',
-      }
+      },
+      padding: {
+        '15': '3.75rem',
+      },
+      margin: {
+        '15': '3.75rem',
+      },
+      aspectRatio: {
+        'flag': '16 / 11',
+      },
+      minWidth: {
+        '6.1': '6.1rem',
+      },
     },
     colors: {
       elements: { light: 'hsl(0, 0%, 100%)', dark: 'hsl(209, 23%, 22%)' },
@@ -35,18 +47,20 @@ module.exports = {
       input: { light: 'hsl(0, 0%, 52%)', dark: 'hsl(209, 23%, 22%)' },
       accent: 'hsl(207.7,6.5%,61%)',
     },
-    minWidth: {
-      '28': '6.5rem',
-    },
+
     maxWidth: {
       '29': '13rem',
       '30': '30rem',
     },
     backgroundSize: {
+      '1.2': '1.2rem',
       '1': '1rem',
+      '0.8': '0.8rem',
       '0.65': '0.65rem',
     },
     backgroundPosition: {
+      'left-9-top-2': 'left 2.25rem top 0.5rem',
+      'left-6-top-2': 'left 1.5rem top 0.5rem',
       'right-xs': 'right 1.25rem center',
       'left-sm': 'left 1.85rem center',
       'left-center': 'left center',
@@ -54,11 +68,12 @@ module.exports = {
     },
     fontSize: {
       'xs': '.75rem',
-      'xsm': '.81rem',
+      'xls': '.81rem',
       'sm': '.875rem',
       'base': '1rem',
       'lg': '1.125rem',
       'xl': '1.25rem',
+      '1xl': '1.37rem',
       '2xl': '1.5rem',
       '3xl': '1.875rem',
       '4xl': '2.25rem',

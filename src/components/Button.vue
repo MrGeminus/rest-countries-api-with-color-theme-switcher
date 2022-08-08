@@ -4,12 +4,11 @@
 		@click="goBack"
 		class="
 			relative
-			pl-11
+			pl-12
+			lg:pl-16
 			pr-6
+			lg:pr-10
 			py-1.5
-			mt-8
-			ml-6
-			md:ml-16
 			mr-auto
 			rounded
 			shadow-md
@@ -17,22 +16,25 @@
 			dark:text-content-light
 			hover:text-content-light
 			dark:hover:text-content-dark
-			text-base
+			text-sm
+			lg:text-base
 			font-light font-nunitoSans
 			bg-elements-light
 			dark:bg-elements-dark
 			hover:bg-elements-dark
 			dark:hover:bg-elements-light
 			transition-colors
-			before:absolute
-			before:top-2.5
-			before:left-5
-			before:w-4
-			before:h-4
-			before:bg-arrow-left-dark-icon
-			before:bg-cover
-			before:bg-center
-			before:bg-no-repeat
+			bg-arrow-left-icon-dark
+			hover:bg-arrow-left-icon-light
+			dark:bg-arrow-left-icon-light dark:hover:bg-arrow-left-icon-dark
+			bg-1
+			lg:bg-1.2
+			bg-left-6-top-2
+			lg:bg-left-9-top-2
+			bg-no-repeat
+			outline-none
+			focus-visible:outline-elements-dark
+			dark:focus-visible:outline-elements-light
 		"
 	>
 		Back

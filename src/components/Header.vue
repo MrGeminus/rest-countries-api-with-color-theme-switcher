@@ -5,7 +5,8 @@
 			px-4
 			py-8
 			md:px-16 md:py-4
-			text-sm
+			text-xs
+			lg:text-base
 			font-nunitoSans
 			text-content-dark
 			dark:text-content-light
@@ -14,16 +15,19 @@
 			border-b-2 border-b-[#e5e7eb]
 		"
 	>
-		<h1 class="md:text-2xl font-extrabold">Where in the world?</h1>
+		<h1 class="text-sm md:text-2xl font-extrabold">Where in the world?</h1>
 		<div class="flex items-center ml-auto">
 			<button
 				class="
-					pl-6
+					pl-5
+					lg:pl-6
 					rounded
 					font-semibold
 					bg-moon-icon-light
 					dark:bg-moon-icon-dark
-					bg-1 bg-no-repeat bg-left-center
+					bg-0.8
+					lg:bg-1
+					bg-no-repeat bg-left-center
 					outline-none outline-offset-8
 					hover:outline-elements-dark
 					dark:hover:outline-elements-light
