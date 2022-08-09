@@ -1,10 +1,7 @@
 <template>
-	<main
-		id="main"
+	<div
 		class="
 			grow
-			flex flex-col
-			w-full
 			py-7
 			lg:py-10
 			px-4
@@ -13,71 +10,80 @@
 			dark:bg-background-dark
 		"
 	>
-		<div class="flex flex-col md:flex-row mb-9 md:justify-between">
-			<Searchbar @search="filterCountiesByName" />
-			<Filter @filter="filterCountiesByRegion" />
-		</div>
-		<section aria-live="polite">
-			<h2 id="results" class="sr-only">Search Results</h2>
-			<div
-				v-if="loading"
-				class="flex-grow flex items-center justify-center"
-			>
-				<p
-					class="
-						flex
-						items-center
-						justify-center
-						text-base
-						font-extrabold font-nunitoSans
-						space-x-2
-					"
+		<div class="grow flex flex-col w-full xl:max-w-8xl mx-auto">
+			<aside class="flex flex-col md:flex-row mb-9 md:justify-between">
+				<Searchbar @search="filterCountiesByName" />
+				<Filter @filter="filterCountiesByRegion" />
+			</aside>
+			<main id="main" aria-live="polite">
+				<h2 id="results" class="sr-only">Search Results</h2>
+				<div
+					v-if="loading"
+					class="flex-grow flex items-center justify-center"
 				>
-					Loading, please wait...
-				</p>
-			</div>
-			<div v-else>
-				<p
-					v-if="countriesList.length === 0"
-					class="text-base font-semibold font-nunitoSans"
-					aria-labelledby="results"
-				>
-					Sorry, there is no such country.
-				</p>
-				<ul
-					v-else
-					class="
-						grid grid-cols-home
-						gap-9
-						md:gap-16
-						justify-center
-						w-full
-					"
-					aria-labelledby="results"
-				>
-					<li :key="country.id" v-for="country in countriesList">
-						<router-link
-							class="
-								outline-none
-								focus-visible:outline-elements-dark
-								dark:focus-visible:outline-elements-light
-							"
-							:aria-label="[
-								'Card linking to additional information about ' +
-									country.name,
+					<p
+						class="
+							flex
+							items-center
+							justify-center
+							text-base
+							font-extrabold font-nunitoSans
+							space-x-2
+						"
+					>
+						Loading, please wait...
+					</p>
+				</div>
+				<div v-else>
+					<p
+						v-if="countriesList.length === 0"
+						class="text-base font-semibold font-nunitoSans"
+						aria-labelledby="results"
+					>
+						Sorry, there is no such country.
+					</p>
+					<ul
+						v-else
+						class="
+							grid grid-cols-home
+							gap-9
+							md:gap-16
+							justify-center
+							w-full
+						"
+						aria-labelledby="results"
+					>
+						<li
+							:key="country.id"
+							v-for="(country, index) in countriesList"
+							:class="[
+								'animate__animated animate__bounceIn',
+								`animate__delay-${index + 1}s`,
 							]"
-							:to="{
-								name: 'DetailPage',
-								params: { countryName: country.name },
-							}"
 						>
-							<Card :country="country" />
-						</router-link>
-					</li>
-				</ul>
-			</div>
-		</section>
-	</main>
+							<router-link
+								class="
+									outline-none
+									focus-visible:outline-elements-dark
+									dark:focus-visible:outline-elements-light
+								"
+								:aria-label="[
+									'Card linking to additional information about ' +
+										country.name,
+								]"
+								:to="{
+									name: 'DetailPage',
+									params: { countryName: country.name },
+								}"
+							>
+								<Card :country="country" />
+							</router-link>
+						</li>
+					</ul>
+				</div>
+			</main>
+		</div>
+	</div>
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
