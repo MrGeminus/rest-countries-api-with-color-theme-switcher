@@ -59,9 +59,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Button from './Button.vue'
 export default defineComponent({
-	components: { Button },
 	name: 'Searchbar',
 	setup(props, { emit }) {
 		const searchQuarry = ref<String>('')

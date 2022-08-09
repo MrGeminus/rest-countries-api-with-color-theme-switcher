@@ -1,12 +1,11 @@
 <template>
 	<header
 		class="
-			flex
 			px-4
 			py-8
-			md:px-16 md:py-4
+			sm:px-16 sm:py-4
 			text-xs
-			lg:text-base
+			sm:text-base
 			font-nunitoSans
 			text-content-dark
 			dark:text-content-light
@@ -15,32 +14,39 @@
 			border-b-2 border-b-[#e5e7eb]
 		"
 	>
-		<h1 class="text-sm md:text-2xl font-extrabold">Where in the world?</h1>
-		<div class="flex items-center ml-auto">
-			<button
-				class="
-					pl-5
-					lg:pl-6
-					rounded
-					font-semibold
-					bg-moon-icon-light
-					dark:bg-moon-icon-dark
-					bg-0.8
-					lg:bg-1
-					bg-no-repeat bg-left-center
-					outline-none outline-offset-8
-					hover:outline-elements-dark
-					dark:hover:outline-elements-light
-					focus-visible:outline-elements-dark
-					dark:focus-visible:outline-elements-light
-				"
-				type="button"
-				role="switch"
-				:ariaChecked="[theme === 'dark']"
-				@click="toggleTheme"
-			>
-				Dark Mode
-			</button>
+		<div class="flex max-w-8xl mx-auto">
+			<h1 class="text-sm sm:text-2xl font-extrabold">
+				Where in the world?
+			</h1>
+			<div class="flex items-center ml-auto">
+				<button
+					id="switch"
+					class="
+						pl-5
+						sm:pl-6
+						rounded
+						font-semibold
+						bg-moon-icon-light
+						dark:bg-moon-icon-dark
+						bg-0.8
+						sm:bg-1
+						bg-no-repeat bg-left-center
+						outline-none outline-offset-8
+						hover:outline-elements-dark
+						dark:hover:outline-elements-light
+						focus-visible:outline-elements-dark
+						dark:focus-visible:outline-elements-light
+					"
+					type="button"
+					role="switch"
+					aria-label="Dark Mode"
+					:ariaChecked="[theme === 'dark']"
+					@click="toggleTheme"
+				>
+					<span aria-hidden="true">Dark Mode</span>
+				</button>
+				<label for="switch" class="sr-only">Dark Mode</label>
+			</div>
 		</div>
 	</header>
 </template>

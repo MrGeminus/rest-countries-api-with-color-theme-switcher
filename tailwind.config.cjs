@@ -21,7 +21,7 @@ module.exports = {
         nunitoSans: ['Nunito Sans', 'sans-serif']
       },
       gridTemplateColumns: {
-        'home': 'repeat(auto-fit, 17.5rem)',
+        'home': 'repeat(auto-fit, minmax(0, 17.5rem))',
       },
       spacing: {
         '4.5': '1.15rem',
@@ -39,6 +39,11 @@ module.exports = {
       minWidth: {
         '6.1': '6.1rem',
       },
+      maxWidth: {
+        '29': 'max-width: 13rem',
+        '30': 'max-width: 30rem',
+        '8xl': '82rem',
+      },
     },
     colors: {
       elements: { light: 'hsl(0, 0%, 100%)', dark: 'hsl(209, 23%, 22%)' },
@@ -46,11 +51,6 @@ module.exports = {
       content: { light: 'hsl(0, 0%, 100%)', dark: 'hsl(200, 15%, 8%)' },
       input: { light: 'hsl(0, 0%, 52%)', dark: 'hsl(209, 23%, 22%)' },
       accent: 'hsl(207.7,6.5%,61%)',
-    },
-
-    maxWidth: {
-      '29': '13rem',
-      '30': '30rem',
     },
     backgroundSize: {
       '1.2': '1.2rem',
