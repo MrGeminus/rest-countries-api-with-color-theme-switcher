@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin')
 module.exports = {
   mode: 'jit',
   content: [
@@ -227,5 +228,10 @@ module.exports = {
       zIndex: ['responsive', 'focus-within', 'focus']
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('supports-focus-within', '@supports selector(:focus-within)'),
+        addVariant('supports-focus-visible', '@supports selector(:focus-visible)')
+    })
+  ],
 }

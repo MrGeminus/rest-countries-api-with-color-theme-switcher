@@ -34,7 +34,6 @@
 			type="search"
 			placeholder="Search for a country..."
 			v-model="searchQuarry"
-			required
 			aria-label="Search for a country"
 		/>
 		<button

@@ -41,17 +41,9 @@
 					font-semibold font-nunitoSans
 				"
 			>
-				<img
-					:src="country.flag"
-					:alt="`${country.name}'s flag`"
-					class="
-						xl:w-5/12
-						aspect-flag
-						animate__animated animate__fadeInLeft
-					"
-				/>
 				<div
 					class="
+						order-2
 						xl:w-7/12 xl:ml-24
 						flex flex-col
 						justify-start
@@ -343,8 +335,7 @@
 							<dt
 								class="
 									min-w-max
-									md:mr-4
-									mb-auto
+									md:mt-1 md:mb-auto md:mr-4
 									text-base
 									animate__animated
 									animate__fadeInDown
@@ -360,58 +351,72 @@
 										gap-2.5
 										mt-4
 										md:mt-0
-										lg:mt-4
-										xl:mt-0
 										list-none
 									"
 								>
-									<router-link
+									<li
 										:class="[
+											'relative',
+											'min-w-6.1',
+											'px-3',
+											'py-1.5',
+											'rounded',
+											'shadow-md',
+											'bg-elements-light',
+											'dark:bg-elements-dark',
+											'hover:bg-elements-dark',
+											'dark:hover:bg-elements-light',
+											'text-content-dark',
+											'dark:text-content-light',
+											'hover:text-content-light',
+											'dark:hover:text-content-dark',
+											'text-xs',
+											'sm:text-xls',
+											'font-light',
+											'text-center',
+											'outline-none focus-within:outline-elements-dark',
+											'dark:focus-within:outline-elements-light',
+											'transition-colors',
 											'animate__animated animate__fadeInDown',
 											`animate__delay-${index + 8}s`,
-											'outline-none focus-visible:outline-elements-dark',
-											'dark:focus-visible:outline-elements-light',
 										]"
 										:key="borderingCountry"
 										v-for="(
 											borderingCountry, index
 										) in country.borderCountries"
-										:to="{
-											name: 'DetailPage',
-											params: {
-												countryName: borderingCountry,
-											},
-										}"
-										><li
+									>
+										<router-link
 											class="
-												min-w-6.1
-												px-3
-												py-1.5
-												rounded
-												shadow-md
-												bg-elements-light
-												dark:bg-elements-dark
-												hover:bg-elements-dark
-												dark:hover:bg-elements-light
-												text-content-dark
-												dark:text-content-light
-												hover:text-content-light
-												dark:hover:text-content-dark
-												text-xs
-												sm:text-xls
-												font-light
-												text-center
-												transition-colors
+												focus:underline
+												outline-none
+												after:absolute after:inset-0
+												supports-focus-within:focus:no-underline
 											"
+											:to="{
+												name: 'DetailPage',
+												params: {
+													countryName:
+														borderingCountry,
+												},
+											}"
+											>{{ borderingCountry }}</router-link
 										>
-											{{ borderingCountry }}
-										</li>
-									</router-link>
+									</li>
 								</ul>
 							</dd>
 						</div>
 					</dl>
 				</div>
+				<img
+					:src="country.flag"
+					:alt="`${country.name}'s flag`"
+					class="
+						order-1
+						xl:w-5/12
+						aspect-flag
+						animate__animated animate__fadeInLeft
+					"
+				/>
 			</div>
 			<div class="m-auto" v-else>
 				<h2>Loading country details...</h2>

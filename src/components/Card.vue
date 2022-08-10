@@ -1,6 +1,8 @@
 <template>
 	<article
 		class="
+			relative
+			flex flex-col
 			pb-11
 			font-nunitoSans
 			bg-element
@@ -13,17 +15,32 @@
 			transform
 			transition-transform
 			hover:scale-105
+			outline-none
+			focus-within:outline-elements-dark
+			dark:focus-within:outline-elements-light
 		"
 	>
-		<figure class="block h-40">
-			<img
-				class="block w-full h-full object-cover rounded-t"
-				:src="country.flag"
-				:alt="country.name + ' ' + 'flag'"
-			/>
-		</figure>
-		<h3 class="pt-4 px-5 font-extrabold">{{ country.name }}</h3>
-		<dl class="pt-4 px-5 text-sm">
+		<h3 class="order-2 pt-4 px-5 font-extrabold">
+			<router-link
+				class="
+					after:absolute after:inset-0
+					focus:underline
+					outline-none
+					supports-focus-within:focus:no-underline
+				"
+				:to="{
+					name: 'DetailPage',
+					params: { countryName: country.name },
+				}"
+				>{{ country.name }}</router-link
+			>
+		</h3>
+		<img
+			class="block order-1 w-full object-cover rounded-t aspect-flag"
+			:src="country.flag"
+			:alt="country.name + ' ' + 'flag'"
+		/>
+		<dl class="order-3 pt-4 px-5 text-sm">
 			<div class="flex">
 				<dt class="font-semibold">Population:</dt>
 				<dd class="ml-1 font-light">{{ country.population }}</dd>

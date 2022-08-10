@@ -55,31 +55,16 @@
 					>
 						<li
 							:key="country.id"
-							v-for="(country, index) in countriesList"
-							:class="[
-								'animate__animated animate__bounceIn',
-								`animate__delay-${index + 1}s`,
-							]"
+							v-for="country in countriesList.slice(
+								0,
+								loadAmount
+							)"
+							class="animate__animated animate__bounceIn"
 						>
-							<router-link
-								class="
-									outline-none
-									focus-visible:outline-elements-dark
-									dark:focus-visible:outline-elements-light
-								"
-								:aria-label="[
-									'Card linking to additional information about ' +
-										country.name,
-								]"
-								:to="{
-									name: 'DetailPage',
-									params: { countryName: country.name },
-								}"
-							>
-								<Card :country="country" />
-							</router-link>
+							<Card :country="country" />
 						</li>
 					</ul>
+					<button @click="loadMore">Load More</button>
 				</div>
 			</main>
 		</div>
@@ -103,17 +88,20 @@ export default defineComponent({
 		const store = useStore()
 		let query = ref('')
 		let region = ref('worldwide')
-		let countriesList = computed(() => {
-			if (query.value !== '')
-				return store.getters[CountryGetterTypes.GET_COUNTRIES_BY_NAME](
-					query.value
-				)
-			else if (region.value !== 'worldwide')
-				return store.getters[
-					CountryGetterTypes.GET_COUNTRIES_BY_REGION
-				](region.value)
-			else return store.state.country.countryList
-		})
+		const loadAmount = ref(16)
+		const countriesList = ref(
+			computed(() => {
+				if (query.value !== '')
+					return store.getters[
+						CountryGetterTypes.GET_COUNTRIES_BY_NAME
+					](query.value)
+				else if (region.value !== 'worldwide')
+					return store.getters[
+						CountryGetterTypes.GET_COUNTRIES_BY_REGION
+					](region.value)
+				else return store.state.country.countryList
+			})
+		)
 
 		let loading = computed(() => store.state.country.loading)
 		const filterCountiesByName = (searchQuery: string): void => {
@@ -124,11 +112,17 @@ export default defineComponent({
 			region.value = selectedRegion
 		}
 
+		const loadMore = (): void => {
+			loadAmount.value += 16
+		}
+
 		return {
 			loading,
 			countriesList,
 			filterCountiesByName,
 			filterCountiesByRegion,
+			loadAmount,
+			loadMore,
 		}
 	},
 })
