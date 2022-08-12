@@ -11,12 +11,20 @@
 		"
 	>
 		<div class="grow flex flex-col w-full xl:max-w-8xl mx-auto">
-			<aside class="flex flex-col md:flex-row mb-9 md:justify-between">
-				<Searchbar @search="filterCountiesByName" />
-				<Filter @filter="filterCountiesByRegion" />
+			<aside>
+				<h2 class="sr-only">Filters</h2>
+				<form
+					class="flex flex-col md:flex-row mb-9 md:justify-between"
+					@submit.prevent
+				>
+					<Searchbar @search="filterCountiesByName" />
+					<Filter @filter="filterCountiesByRegion" />
+				</form>
 			</aside>
-			<main id="main" aria-live="polite">
-				<h2 id="results" class="sr-only">Search Results</h2>
+			<main id="main">
+				<h2 id="results" class="sr-only" aria-live="polite">
+					{{ countriesList.length }}countries shown
+				</h2>
 				<div
 					v-if="loading"
 					class="flex-grow flex items-center justify-center"
@@ -64,7 +72,12 @@
 							<Card :country="country" />
 						</li>
 					</ul>
-					<button @click="loadMore">Load More</button>
+					<button
+						v-if="countriesList.length > 16 && loadAmount < 250"
+						@click="loadMore"
+					>
+						Load More
+					</button>
 				</div>
 			</main>
 		</div>

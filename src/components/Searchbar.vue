@@ -1,9 +1,5 @@
 <template>
-	<form
-		class="relative w-full md:max-w-30"
-		role="search"
-		@submit="handleSubmit"
-	>
+	<div class="relative w-full md:max-w-30">
 		<input
 			id="search"
 			class="
@@ -34,6 +30,7 @@
 			type="search"
 			placeholder="Search for a country..."
 			v-model="searchQuarry"
+			@keyup="handleChange"
 			aria-label="Search for a country"
 		/>
 		<button
@@ -49,12 +46,13 @@
 				outline-none
 				focus-visible:outline-elements-dark
 				dark:focus-visible:outline-elements-light
+				pointer-events-none
 			"
 			type="submit"
 		>
-			<span class="sr-only">Search</span>
+			<span class="sr-only">Submit</span>
 		</button>
-	</form>
+	</div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
@@ -63,12 +61,11 @@ export default defineComponent({
 	setup(props, { emit }) {
 		const searchQuarry = ref<String>('')
 
-		const handleSubmit = (event: Event): void => {
-			event.preventDefault()
+		const handleChange = (): void => {
 			emit('search', searchQuarry.value)
 		}
 
-		return { searchQuarry, handleSubmit }
+		return { searchQuarry, handleChange }
 	},
 })
 </script>
