@@ -380,9 +380,9 @@
 											'animate__animated animate__fadeInDown',
 											`animate__delay-${index + 8}s`,
 										]"
-										:key="country"
+										:key="borderCountry"
 										v-for="(
-											country, index
+											borderCountry, index
 										) in country.borderCountries"
 									>
 										<router-link
@@ -395,10 +395,10 @@
 											:to="{
 												name: 'DetailPage',
 												params: {
-													countryName: country,
+													countryName: borderCountry,
 												},
 											}"
-											>{{ country }}</router-link
+											>{{ borderCountry }}</router-link
 										>
 									</li>
 								</ul>

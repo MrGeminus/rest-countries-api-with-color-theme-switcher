@@ -39,7 +39,7 @@
 					<TransitionGroup
 						v-else
 						tag="ul"
-						appear="true"
+						appear
 						mode="out-in"
 						enter-active-class="animate__animated animate__bounceIn"
 						leave-active-class="animate__animated animate__bounceOut"
