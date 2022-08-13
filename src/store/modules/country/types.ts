@@ -11,8 +11,7 @@ export interface CountryStateTypes {
 
 export type CountryGetters = {
     [CountryGetterTypes.GET_COUNTRY_BY_NAME]: (state: CountryStateTypes) => (name: string) => Country
-    [CountryGetterTypes.GET_COUNTRIES_BY_NAME]: (state: CountryStateTypes) => (query: string) => Country[]
-    [CountryGetterTypes.GET_COUNTRIES_BY_REGION]: (state: CountryStateTypes) => (region: string) => Country[]
+    [CountryGetterTypes.FILTER_COUNTRY_LIST]: (state: CountryStateTypes) => (query: string, region: string) => Country[]
 }
 
 export type ActionAugments = Omit<ActionContext<CountryStateTypes, RootStateTypes>, 'commit'> & {

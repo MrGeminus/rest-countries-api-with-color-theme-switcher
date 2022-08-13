@@ -7,13 +7,15 @@
 	>
 		<a class="sr-only" href="#main">Skip to content</a>
 		<Header />
-		<Transition
-			name="fade"
-			enter-active-class="animate__animated animate__fadeIn"
-			leave-active-class="animate__animated animate__fadeOut"
-		>
-			<router-view></router-view>
-		</Transition>
+		<router-view v-slot="{ Component, route }">
+			<Transition
+				mode="out-in"
+				enter-active-class="animate__animated animate__fadeIn"
+				leave-active-class="animate__animated animate__fadeOut"
+			>
+				<component :is="Component" :key="route.path" />
+			</Transition>
+		</router-view>
 		<Footer />
 	</div>
 </template>

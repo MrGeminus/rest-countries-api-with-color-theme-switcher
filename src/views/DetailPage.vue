@@ -380,9 +380,9 @@
 											'animate__animated animate__fadeInDown',
 											`animate__delay-${index + 8}s`,
 										]"
-										:key="borderingCountry"
+										:key="country"
 										v-for="(
-											borderingCountry, index
+											country, index
 										) in country.borderCountries"
 									>
 										<router-link
@@ -395,11 +395,10 @@
 											:to="{
 												name: 'DetailPage',
 												params: {
-													countryName:
-														borderingCountry,
+													countryName: country,
 												},
 											}"
-											>{{ borderingCountry }}</router-link
+											>{{ country }}</router-link
 										>
 									</li>
 								</ul>
@@ -425,7 +424,7 @@
 	</main>
 </template>
 <script lang="ts">
-import { defineComponent, computed, watchEffect } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { CountryGetterTypes } from '../store/enums'
 import { useStore } from '../store'
 import Button from '../components/Button.vue'
@@ -434,25 +433,24 @@ export default defineComponent({
 	components: {
 		Button,
 	},
-	props: ['countryName'],
-	setup(props: any) {
+	props: {
+		countryName: {
+			type: String,
+			required: true,
+		},
+	},
+	setup(props) {
 		const store = useStore()
-		let country = computed(() =>
-			store.getters[CountryGetterTypes.GET_COUNTRY_BY_NAME](
-				props.countryName
+		const country = ref(
+			computed(() =>
+				store.getters[CountryGetterTypes.GET_COUNTRY_BY_NAME](
+					props.countryName
+				)
 			)
 		)
+		const loading = computed(() => store.state.country.loading)
 
-		watchEffect(
-			() =>
-				(country = computed(() =>
-					store.getters[CountryGetterTypes.GET_COUNTRY_BY_NAME](
-						props.countryName
-					)
-				))
-		)
-
-		return { country }
+		return { country, loading }
 	},
 })
 </script>

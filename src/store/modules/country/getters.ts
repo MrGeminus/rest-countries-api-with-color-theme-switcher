@@ -8,12 +8,16 @@ export const getters: GetterTree<CountryStateTypes, RootStateTypes> & CountryGet
     [CountryGetterTypes.GET_COUNTRY_BY_NAME]: (state: CountryStateTypes) => (name: string): Country => {
         return state.countryList.filter(country => country.name.toLocaleLowerCase() === name.toLocaleLowerCase())[0]
     },
-    [CountryGetterTypes.GET_COUNTRIES_BY_NAME]: (state: CountryStateTypes) => (query: string): Country[] => {
-        console.log(query)
-        return query !== '' ? state.countryList.filter(country => country.name.toLocaleLowerCase().startsWith(query.toLocaleLowerCase())).sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)) : state.countryList
-    },
-    [CountryGetterTypes.GET_COUNTRIES_BY_REGION]: (state: CountryStateTypes) => (region: string): Country[] => {
-        console.log(region)
-        return region.toLocaleLowerCase() !== 'worldwide' ? state.countryList.filter(country => country.region.toLocaleLowerCase() === region.toLocaleLowerCase()).sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)) : state.countryList
+    [CountryGetterTypes.FILTER_COUNTRY_LIST]: (state: CountryStateTypes) => (query: string, region: string): Country[] => {
+        if (query.toLocaleLowerCase() !== '' && region.toLocaleLowerCase() !== 'worldwide') {
+            return state.countryList.filter(country => country.region.toLocaleLowerCase() === region.toLocaleLowerCase()).filter(country => country.name.toLocaleLowerCase().startsWith(query.toLocaleLowerCase())).sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+        }
+        if (query.toLocaleLowerCase() !== '' && region.toLocaleLowerCase() === 'worldwide') {
+            return state.countryList.filter(country => country.name.toLocaleLowerCase().startsWith(query.toLocaleLowerCase())).sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+        }
+        if (query.toLocaleLowerCase() === '' && region.toLocaleLowerCase() !== 'worldwide') {
+            return state.countryList.filter(country => country.region.toLocaleLowerCase() === region.toLocaleLowerCase()).sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+        }
+        return state.countryList
     },
 }
