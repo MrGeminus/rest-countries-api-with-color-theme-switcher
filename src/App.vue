@@ -7,7 +7,13 @@
 	>
 		<a class="sr-only" href="#main">Skip to content</a>
 		<Header />
-		<router-view></router-view>
+		<Transition
+			name="fade"
+			enter-active-class="animate__animated animate__fadeIn"
+			leave-active-class="animate__animated animate__fadeOut"
+		>
+			<router-view></router-view>
+		</Transition>
 		<Footer />
 	</div>
 </template>

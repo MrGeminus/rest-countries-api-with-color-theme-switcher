@@ -61,16 +61,21 @@
 						"
 						aria-labelledby="results"
 					>
-						<li
-							:key="country.id"
-							v-for="country in countriesList.slice(
-								0,
-								loadAmount
-							)"
-							class="animate__animated animate__bounceIn"
+						<TransitionGroup
+							name="bounce"
+							enter-active-class="animate__animated animate__bounceIn animate__delay-4s"
+							leave-active-class="animate__animated animate__bounceOut animate__fast"
 						>
-							<Card :country="country" />
-						</li>
+							<li
+								:key="country.id"
+								v-for="country in countriesList.slice(
+									0,
+									loadAmount
+								)"
+							>
+								<Card :country="country" />
+							</li>
+						</TransitionGroup>
 					</ul>
 					<button
 						v-if="countriesList.length > 16 && loadAmount < 250"

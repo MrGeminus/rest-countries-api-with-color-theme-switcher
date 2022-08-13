@@ -4,9 +4,8 @@
 			relative
 			flex flex-col
 			pb-11
-			font-nunitoSans
-			bg-element
 			rounded
+			font-nunitoSans
 			text-content-dark
 			dark:text-content-light
 			bg-elements-light
@@ -23,9 +22,9 @@
 		<h3 class="order-2 pt-4 px-5 font-extrabold">
 			<router-link
 				class="
-					after:absolute after:inset-0
 					focus:underline
 					outline-none
+					after:absolute after:inset-0
 					supports-focus-within:focus:no-underline
 				"
 				:to="{
@@ -57,15 +56,20 @@
 	</article>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { Country } from '../types'
-export default {
+export default defineComponent({
 	name: 'Card',
 	props: {
-		country: {},
+		country: {
+			type: Object as () => Country,
+			required: true,
+		},
 	},
-	setup() {
-		return {}
+	setup(props) {
+		const country = ref<Country>(props.country)
+
+		return { country }
 	},
-}
+})
 </script>
