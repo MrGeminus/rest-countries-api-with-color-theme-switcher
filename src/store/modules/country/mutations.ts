@@ -1,7 +1,7 @@
-import { MutationTree } from 'vuex';
+import type { MutationTree } from 'vuex';
 import { CountryMutationTypes } from "../../enums"
-import { ApiResponse } from '../../../types';
-import { CountryStateTypes, CountryMutations } from "./types"
+import type { ApiResponse } from '../../../types';
+import type { CountryStateTypes, CountryMutations } from "./types"
 
 export const mutations: MutationTree<CountryStateTypes> & CountryMutations = {
     [CountryMutationTypes.SET_COUNTRY_LIST](state: CountryStateTypes, countryList: ApiResponse[]) {

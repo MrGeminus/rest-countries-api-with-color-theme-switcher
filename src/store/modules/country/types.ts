@@ -1,7 +1,7 @@
-import { Store as VuexStore, ActionContext, CommitOptions, DispatchOptions } from "vuex";
-import { Country, ApiResponse } from "../../../types";
+import type { Store as VuexStore, ActionContext, CommitOptions, DispatchOptions } from "vuex";
+import type { Country, ApiResponse } from "../../../types";
 import { CountryGetterTypes, CountryActionTypes, CountryMutationTypes } from "../../enums"
-import { RootStateTypes } from "../../types";
+import type { RootStateTypes } from "../../types";
 
 export interface CountryStateTypes {
     loading: boolean;

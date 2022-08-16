@@ -53,13 +53,16 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
+import type { ComputedRef } from 'vue'
 import { useStore } from '../store'
 import { ThemeActionTypes } from '../store/enums'
 export default defineComponent({
 	name: 'Header',
 	setup() {
 		const store = useStore()
-		const theme = ref(computed(() => store.state.theme.theme))
+		const theme = ref<ComputedRef<string>>(
+			computed(() => store.state.theme.theme)
+		)
 		const toggleTheme = () => {
 			if (theme.value === 'dark') {
 				localStorage.theme = 'light'

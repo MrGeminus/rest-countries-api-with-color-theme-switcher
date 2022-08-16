@@ -74,11 +74,13 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, ref } from 'vue'
+import type { ComputedRef } from 'vue'
 import { useStore } from '../store'
 import { CountryGetterTypes } from '../store/enums'
 import Searchbar from '../components/Searchbar.vue'
 import Card from '../components/Card.vue'
 import Filter from '../components/Filter.vue'
+import type { Country } from '../types'
 export default defineComponent({
 	name: 'HomePage',
 	components: {
@@ -91,7 +93,9 @@ export default defineComponent({
 		let query = ref<string>('')
 		let region = ref<string>('worldwide')
 		const loadAmount = ref<number>(16)
-		let countriesList = ref(computed(() => store.state.country.countryList))
+		let countriesList = ref<ComputedRef<Country[]>>(
+			computed(() => store.state.country.countryList)
+		)
 
 		const loading = computed(() => store.state.country.loading)
 		const filterCountiesByName = (searchQuery: string): void => {
@@ -106,7 +110,7 @@ export default defineComponent({
 			loadAmount.value += 16
 		}
 
-		countriesList = ref(
+		countriesList = ref<ComputedRef<Country[]>>(
 			computed(() =>
 				store.getters[CountryGetterTypes.FILTER_COUNTRY_LIST](
 					query.value,

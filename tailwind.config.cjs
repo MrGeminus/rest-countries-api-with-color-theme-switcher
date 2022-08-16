@@ -231,8 +231,8 @@ module.exports = {
   },
   plugins: [
     plugin(function ({ addVariant }) {
-      addVariant('supports-focus-within', '@supports selector(:focus-within)'),
-        addVariant('supports-focus-visible', '@supports selector(:focus-visible)')
+      addVariant('supports-focus-within', '@supports selector(:focus-within)');
+      addVariant('supports-focus-visible', '@supports selector(:focus-visible)')
     })
   ],
 }

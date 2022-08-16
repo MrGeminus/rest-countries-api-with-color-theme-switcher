@@ -99,7 +99,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch, nextTick } from 'vue'
 import { onClickOutside } from '@vueuse/core'
-import { Option } from '../types'
+import type { Option } from '../types'
 export default defineComponent({
 	name: 'Filter',
 

@@ -1,6 +1,6 @@
-import { Module } from 'vuex';
-import { RootStateTypes } from "../../types";
-import { ThemeStateTypes } from './types';
+import type { Module } from 'vuex';
+import type { RootStateTypes } from "../../types";
+import type { ThemeStateTypes } from './types';
 import { state } from './state';
 import { actions } from './actions';
 import { mutations } from './mutations';

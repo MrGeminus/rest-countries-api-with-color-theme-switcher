@@ -1,7 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+@import './css/animate.min.css';
 
 @tailwind base;
 @tailwind components;
+
+@layer base {
+    @font-face {
+        font-family: 'Nunito Sans';
+        font-weight: 300;
+        src: local('Nunito Sans'), url(./assets/fonts/NunitoSans-Light.ttf) format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Nunito Sans';
+        font-weight: 600;
+        src: local('Nunito Sans'), url(./assets/fonts/NunitoSans-SemiBold.ttf) format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Nunito Sans';
+        font-weight: 800;
+        src: local('Nunito Sans'), url(./assets/fonts/NunitoSans-ExtraBold.ttf) format('truetype');
+    }
+}
+
 @tailwind utilities;
 
 @layer utilities {

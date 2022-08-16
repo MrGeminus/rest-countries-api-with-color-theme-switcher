@@ -57,7 +57,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { Country } from '../types'
+import type { Country } from '../types'
 export default defineComponent({
 	name: 'Card',
 	props: {

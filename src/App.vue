@@ -22,6 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, computed } from 'vue'
+import type { ComputedRef } from 'vue'
 import { useStore } from './store'
 import { CountryActionTypes, ThemeActionTypes } from './store/enums'
 import Header from './components/Header.vue'
@@ -34,7 +35,9 @@ export default defineComponent({
 	},
 	setup() {
 		const store = useStore()
-		const theme = ref(computed(() => store.state.theme.theme))
+		const theme = ref<ComputedRef<string>>(
+			computed(() => store.state.theme.theme)
+		)
 		onMounted(() => {
 			store.dispatch(ThemeActionTypes.UPDATE_THEME)
 			store.dispatch(CountryActionTypes.FETCH_COUNTRY_LIST)
@@ -43,7 +46,3 @@ export default defineComponent({
 	},
 })
 </script>
-<style>
-@import '../node_modules/animate.css/animate.min.css';
-</style>
-

@@ -1,9 +1,9 @@
-import { ActionTree } from 'vuex';
-import { ApiResponse } from '../../../types';
+import type { ActionTree } from 'vuex';
+import type { ApiResponse } from '../../../types';
 import { CountryActionTypes, CountryMutationTypes, } from "../../enums"
-import { RootStateTypes } from "../../types";
-import { CountryStateTypes, CountryActions } from './types';
-import axios, { AxiosResponse } from 'axios';
+import type { RootStateTypes } from "../../types";
+import type { CountryStateTypes, CountryActions } from './types';
+import axios, { type AxiosResponse } from 'axios';
 
 export const actions: ActionTree<CountryStateTypes, RootStateTypes> & CountryActions = {
     async [CountryActionTypes.FETCH_COUNTRY_LIST]({ commit }) {

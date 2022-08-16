@@ -1,6 +1,6 @@
-import { Module } from 'vuex';
-import { RootStateTypes } from '../../types';
-import { CountryStateTypes } from './types';
+import type { Module } from 'vuex';
+import type { RootStateTypes } from '../../types';
+import type { CountryStateTypes } from './types';
 import { state } from './state';
 import { getters } from './getters';
 import { actions } from './actions';

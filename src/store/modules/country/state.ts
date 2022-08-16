@@ -1,4 +1,4 @@
-import { CountryStateTypes } from "./types";
+import type { CountryStateTypes } from "./types";
 
 export const state: CountryStateTypes = {
     loading: false,

@@ -1,7 +1,7 @@
-import { ActionTree } from 'vuex';
+import type { ActionTree } from 'vuex';
 import { ThemeActionTypes, ThemeMutationTypes, } from "../../enums"
-import { RootStateTypes } from "../../types";
-import { ThemeStateTypes, ThemeActions } from './types';
+import type { RootStateTypes } from "../../types";
+import type { ThemeStateTypes, ThemeActions } from './types';
 
 export const actions: ActionTree<ThemeStateTypes, RootStateTypes> & ThemeActions = {
     async [ThemeActionTypes.UPDATE_THEME]({ commit }) {

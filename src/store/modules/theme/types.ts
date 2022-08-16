@@ -1,6 +1,6 @@
-import { Store as VuexStore, ActionContext, CommitOptions, DispatchOptions } from "vuex";
+import type { Store as VuexStore, ActionContext, CommitOptions, DispatchOptions } from "vuex";
 import { ThemeActionTypes, ThemeMutationTypes } from "../../enums"
-import { RootStateTypes } from "../../types";
+import type { RootStateTypes } from "../../types";
 
 export interface ThemeStateTypes {
     theme: string;

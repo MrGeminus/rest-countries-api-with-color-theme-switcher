@@ -1,5 +1,5 @@
-import { CountryStateTypes, CountryStoreType } from './modules/country/types';
-import { ThemeStateTypes, ThemeStoreType } from './modules/theme/types';
+import type { CountryStateTypes, CountryStoreType } from './modules/country/types';
+import type { ThemeStateTypes, ThemeStoreType } from './modules/theme/types';
 
 export type RootStateTypes = {
     country: CountryStateTypes;

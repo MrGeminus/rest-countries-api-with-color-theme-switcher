@@ -1,7 +1,7 @@
-import { GetterTree } from 'vuex'
-import { Country } from '../../../types';
-import { RootStateTypes } from "../../types";
-import { CountryStateTypes, CountryGetters } from './types'
+import type { GetterTree } from 'vuex'
+import type { Country } from '../../../types';
+import type { RootStateTypes } from "../../types";
+import type { CountryStateTypes, CountryGetters } from './types'
 import { CountryGetterTypes } from '../../enums'
 
 export const getters: GetterTree<CountryStateTypes, RootStateTypes> & CountryGetters = {
