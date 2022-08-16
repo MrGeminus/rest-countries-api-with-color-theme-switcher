@@ -1,43 +1,27 @@
 <template>
-	<div
-		class="
-			grow
-			flex
-			px-4
-			py-7
-			lg:py-10
-			md:px-16
-			text-content-dark
-			dark:text-content-light
-			font-semibold font-nunitoSans
-			bg-background-light
-			dark:bg-background-dark
-		"
-	>
-		<div class="grow flex flex-col w-full xl:max-w-8xl mx-auto">
-			<aside>
-				<h2 class="sr-only">Filters</h2>
-				<form
-					class="flex flex-col md:flex-row md:justify-between mb-9"
-					@submit.prevent
-				>
-					<Searchbar @search="filterCountiesByName" />
-					<Filter @filter="filterCountiesByRegion" />
-				</form>
-			</aside>
-			<main id="main" class="grow flex">
-				<div v-if="loading" class="grow flex">
-					<p class="m-auto text-xl">Loading, please wait...</p>
-				</div>
-				<div v-else class="grow flex flex-col">
+	<div class="grow flex flex-col px-4 py-7 lg:py-10 md:px-16">
+		<aside class="grow flex flex-col w-full xl:max-w-8xl mx-auto">
+			<h2 class="sr-only">Filters</h2>
+			<form
+				class="flex flex-col md:flex-row md:justify-between mb-9"
+				@submit.prevent
+			>
+				<Searchbar @search="filterCountiesByName" />
+				<Filter @filter="filterCountiesByRegion" />
+			</form>
+		</aside>
+		<main id="main" class="grow flex flex-col w-full xl:max-w-8xl mx-auto">
+			<Suspense>
+				<template v-if="!loading">
 					<h2 id="results" class="sr-only" aria-live="polite">
-						{{ countriesList.length }}countries shown
+						{{
+							countriesList.length > 0
+								? countriesList.length + 'countries shown'
+								: 'No countries found'
+						}}
 					</h2>
-					<p v-if="countriesList.length === 0" class="m-auto text-xl">
-						Sorry, there is no such country.
-					</p>
 					<TransitionGroup
-						v-else
+						v-if="countriesList.length !== 0"
 						tag="ul"
 						appear
 						mode="out-in"
@@ -67,9 +51,12 @@
 					>
 						Load More
 					</button>
-				</div>
-			</main>
-		</div>
+				</template>
+				<template v-else>
+					<HomeSkeleton />
+				</template>
+			</Suspense>
+		</main>
 	</div>
 </template>
 <script lang="ts">
@@ -77,6 +64,7 @@ import { defineComponent, computed, ref } from 'vue'
 import type { ComputedRef } from 'vue'
 import { useStore } from '../store'
 import { CountryGetterTypes } from '../store/enums'
+import HomeSkeleton from './HomeSkeleton.vue'
 import Searchbar from '../components/Searchbar.vue'
 import Card from '../components/Card.vue'
 import Filter from '../components/Filter.vue'
@@ -84,6 +72,7 @@ import type { Country } from '../types'
 export default defineComponent({
 	name: 'HomePage',
 	components: {
+		HomeSkeleton,
 		Searchbar,
 		Card,
 		Filter,

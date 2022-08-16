@@ -2,20 +2,33 @@
 	<div
 		:class="[
 			theme === 'dark' ? 'dark' : '',
-			'flex flex-col min-h-screen bg-background-light dark:bg-background-dark',
+			'flex flex-col min-h-screen font-nunitoSans',
 		]"
 	>
 		<a class="sr-only" href="#main">Skip to content</a>
 		<Header />
-		<router-view v-slot="{ Component, route }">
-			<Transition
-				mode="out-in"
-				enter-active-class="animate__animated animate__fadeIn"
-				leave-active-class="animate__animated animate__fadeOut"
-			>
-				<component :is="Component" :key="route.path" />
-			</Transition>
-		</router-view>
+		<div
+			class="
+				grow
+				flex flex-col
+				text-content-dark
+				dark:text-content-light
+				bg-background-light
+				dark:bg-background-dark
+			"
+		>
+			<router-view v-slot="{ Component, route }">
+				<Transition
+					mode="out-in"
+					enter-active-class="animate__animated animate__fadeIn animate__faster"
+					leave-active-class="animate__animated animate__fadeOut animate__faster"
+				>
+					<KeepAlive>
+						<component :is="Component" :key="route.path" />
+					</KeepAlive>
+				</Transition>
+			</router-view>
+		</div>
 		<Footer />
 	</div>
 </template>

@@ -46,14 +46,15 @@ module.exports = {
         '30': '30rem',
         '8xl': '82rem',
       },
+      colors: {
+        elements: { light: 'hsl(0, 0%, 100%)', dark: 'hsl(209, 23%, 22%)' },
+        background: { light: 'hsl(0, 0%, 98%)', dark: 'hsl(207, 26%, 17%)' },
+        content: { light: 'hsl(0, 0%, 100%)', dark: 'hsl(200, 15%, 8%)' },
+        input: { light: 'hsl(0, 0%, 52%)', dark: 'hsl(209, 23%, 22%)' },
+        accent: 'hsl(207.7,6.5%,61%)',
+      },
     },
-    colors: {
-      elements: { light: 'hsl(0, 0%, 100%)', dark: 'hsl(209, 23%, 22%)' },
-      background: { light: 'hsl(0, 0%, 98%)', dark: 'hsl(207, 26%, 17%)' },
-      content: { light: 'hsl(0, 0%, 100%)', dark: 'hsl(200, 15%, 8%)' },
-      input: { light: 'hsl(0, 0%, 52%)', dark: 'hsl(209, 23%, 22%)' },
-      accent: 'hsl(207.7,6.5%,61%)',
-    },
+
     backgroundSize: {
       '1.2': '1.2rem',
       '1': '1rem',
