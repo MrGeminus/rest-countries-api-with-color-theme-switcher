@@ -1,5 +1,5 @@
 <template>
-	<h2 class="sr-only">Loading country details...</h2>
+	<h2 class="sr-only">Loading country details, please wait...</h2>
 	<div class="flex flex-col xl:flex-row xl:items-center mt-15 animate-pulse">
 		<div class="block w-full h-60 sm:h-96 bg-neutral-300"></div>
 		<div class="flex flex-col xl:ml-24">

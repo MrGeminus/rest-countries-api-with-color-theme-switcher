@@ -1,3 +1,4 @@
+import { mapActions } from 'vuex';
 import type { MutationTree } from 'vuex';
 import { CountryMutationTypes } from "../../enums"
 import type { ApiResponse } from '../../../types';
@@ -6,6 +7,7 @@ import type { CountryStateTypes, CountryMutations } from "./types"
 export const mutations: MutationTree<CountryStateTypes> & CountryMutations = {
     [CountryMutationTypes.SET_COUNTRY_LIST](state: CountryStateTypes, countryList: ApiResponse[]) {
         countryList.forEach((country, index) => {
+            if (country.name.common === 'Kosovo') return
             state.countryList.push({
                 id: index + 1,
                 flag: country.flags.svg,
@@ -18,9 +20,9 @@ export const mutations: MutationTree<CountryStateTypes> & CountryMutations = {
                 topLevelDomain: country.tld ? country.tld : null,
                 currencies: country.currencies ? (Object.keys(country.currencies)).map((item: string) => country.currencies[item].name) : null,
                 languages: country.languages ? (Object.keys(country.languages)).map((item: string) => country.languages[item]) : null,
-                borderCountries: country.borders ? country.borders.map((iso: string) => countryList.map((land: any) => {
-                    return (land.name.common != undefined && land.cca3 === iso) ? land.name.common : "null"
-                }).filter((item: string) => item !== "null")[0]).sort() : null,
+                borderCountries: country.borders ? country.borders.map((iso: string) => countryList.map((state: any) => {
+                    return (state.name.common !== undefined && state.cca3 === iso) ? state.name.common : "null"
+                }).filter((item: string) => item !== "null")[0]).map(countryName => { if (countryName === 'Kosovo' && country.name.common === 'Serbia') return 'Albania'; if (countryName === 'Kosovo' && country.name.common === 'Albania') return 'Serbia'; if (countryName !== 'Kosovo') return countryName }).filter((item: string | undefined) => item !== undefined).sort() : null,
             })
         });
         state.countryList = state.countryList.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));

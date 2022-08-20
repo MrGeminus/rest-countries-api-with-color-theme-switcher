@@ -4,14 +4,14 @@
 			px-4
 			py-8
 			sm:px-16 sm:py-4
+			shadow-custom-1
 			text-xs
 			sm:text-base
-			font-nunitoSans
 			text-content-dark
 			dark:text-content-light
 			bg-elements-light
 			dark:bg-elements-dark
-			border-b-2 border-b-[#e5e7eb]
+			z-10
 		"
 	>
 		<div class="flex max-w-8xl mx-auto">
@@ -30,7 +30,7 @@
 						dark:bg-moon-icon-dark
 						bg-0.8
 						sm:bg-1
-						bg-no-repeat bg-left-center
+						bg-left-center bg-no-repeat
 						outline-none outline-offset-8
 						hover:outline-elements-dark
 						dark:hover:outline-elements-light

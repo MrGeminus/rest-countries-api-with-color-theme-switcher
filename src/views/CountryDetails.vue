@@ -4,23 +4,20 @@
 		class="grow pt-9 sm:pt-15 pb-15 px-7 sm:px-16 text-sm sm:text-base"
 	>
 		<div class="grow flex flex-col max-w-2xl xl:max-w-8xl mx-auto">
-			<Button />
+			<Button
+				@click="goBack"
+				classes="pl-12 sm:pl-16 pr-6 sm:pr-10 py-1.5 mr-auto
+			             text-sm sm:text-base 
+			             bg-arrow-left-icon-dark dark:bg-arrow-left-icon-light
+			             bg-1 sm:bg-1.2 bg-left-6-top-2 sm:bg-left-9-top-2 bg-no-repeat 
+			             hover:bg-arrow-left-icon-light dark:hover:bg-arrow-left-icon-dark 
+			"
+				>Back
+			</Button>
 			<Suspense>
 				<template v-if="!loading">
 					<div
-						v-if="
-							country &&
-							country?.name &&
-							country?.nativeName &&
-							country?.flag &&
-							country?.capital &&
-							country?.population &&
-							country?.region &&
-							country?.subRegion &&
-							country?.languages &&
-							country?.currencies &&
-							country?.topLevelDomain
-						"
+						v-if="country"
 						class="
 							mt-15
 							flex flex-col
@@ -360,27 +357,7 @@
 										>
 											<li
 												:class="[
-													'relative',
-													'min-w-6.1',
-													'px-3',
-													'py-1.5',
 													'rounded',
-													'shadow-md',
-													'bg-elements-light',
-													'dark:bg-elements-dark',
-													'hover:bg-elements-dark',
-													'dark:hover:bg-elements-light',
-													'text-content-dark',
-													'dark:text-content-light',
-													'hover:text-content-light',
-													'dark:hover:text-content-dark',
-													'text-xs',
-													'sm:text-xls',
-													'font-light',
-													'text-center',
-													'outline-none focus-within:outline-elements-dark',
-													'dark:focus-within:outline-elements-light',
-													'transition-colors',
 													'animate__animated animate__fadeInDown',
 													`animate__delay-${
 														index + 8
@@ -391,24 +368,21 @@
 													borderCountry, index
 												) in country.borderCountries"
 											>
-												<router-link
-													class="
-														focus:underline
-														outline-none
-														after:absolute
-														after:inset-0
-														supports-focus-within:focus:no-underline
+												<Button
+													classes="
+													min-w-6.1
+													px-3
+													py-1.5
+													text-xs sm:text-xls text-center
 													"
 													:to="{
-														name: 'DetailPage',
+														name: 'CountryDetails',
 														params: {
 															countryName:
 																borderCountry,
 														},
 													}"
-													>{{
-														borderCountry
-													}}</router-link
+													>{{ borderCountry }}</Button
 												>
 											</li>
 										</ul>
@@ -436,13 +410,14 @@
 	</main>
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref } from 'vue'
+import { defineComponent, computed, ref, onUpdated } from 'vue'
+import { useRouter } from 'vue-router'
 import { CountryGetterTypes } from '../store/enums'
 import { useStore } from '../store'
 import CountryDetailsSkeleton from './CountryDetailsSkeleton.vue'
 import Button from '../components/Button.vue'
 export default defineComponent({
-	name: 'CountryPage',
+	name: 'CountryDetails',
 	components: {
 		CountryDetailsSkeleton,
 		Button,
@@ -455,16 +430,38 @@ export default defineComponent({
 	},
 	setup(props) {
 		const store = useStore()
+		const router = useRouter()
+		const countryName = ref(props.countryName)
 		const country = ref(
 			computed(() =>
 				store.getters[CountryGetterTypes.GET_COUNTRY_BY_NAME](
-					props.countryName
+					countryName.value
 				)
 			)
 		)
+
 		const loading = computed(() => store.state.country.loading)
 
-		return { country, loading }
+		const goBack = () => {
+			router.go(-1)
+		}
+
+		onUpdated(() => {
+			if (!country.value) {
+				router.push({
+					name: 'NotFound',
+					params: {
+						pathMatch: router.currentRoute.value.path
+							.substring(1)
+							.split('/'),
+					},
+					query: router.currentRoute.value.query,
+					hash: router.currentRoute.value.hash,
+				})
+			}
+		})
+
+		return { country, loading, goBack }
 	},
 })
 </script>

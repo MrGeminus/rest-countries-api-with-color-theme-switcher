@@ -1,10 +1,11 @@
 <template>
-	<div class="grow flex flex-col px-4 py-7 lg:py-10 md:px-16">
-		<aside class="grow flex flex-col w-full xl:max-w-8xl mx-auto">
+	<div class="grow flex flex-col px-4 py-7 sm:py-10 sm:px-16">
+		<aside class="flex flex-col w-full xl:max-w-8xl mx-auto">
 			<h2 class="sr-only">Filters</h2>
 			<form
 				class="flex flex-col md:flex-row md:justify-between mb-9"
 				@submit.prevent
+				aria-controls="results"
 			>
 				<Searchbar @search="filterCountiesByName" />
 				<Filter @filter="filterCountiesByRegion" />
@@ -14,11 +15,7 @@
 			<Suspense>
 				<template v-if="!loading">
 					<h2 id="results" class="sr-only" aria-live="polite">
-						{{
-							countriesList.length > 0
-								? countriesList.length + 'countries shown'
-								: 'No countries found'
-						}}
+						{{ countriesList.length + 'countries shown' }}
 					</h2>
 					<TransitionGroup
 						v-if="countriesList.length !== 0"
@@ -35,22 +32,11 @@
 							w-full
 						"
 					>
-						<li
-							:key="country.id"
-							v-for="country in countriesList.slice(
-								0,
-								loadAmount
-							)"
-						>
+						<li :key="country.id" v-for="country in countriesList">
 							<Card :country="country" />
 						</li>
 					</TransitionGroup>
-					<button
-						v-if="countriesList.length > 16 && loadAmount < 250"
-						@click="loadMore"
-					>
-						Load More
-					</button>
+					<p v-else>Such a country doesn't exist</p>
 				</template>
 				<template v-else>
 					<HomeSkeleton />
@@ -70,7 +56,7 @@ import Card from '../components/Card.vue'
 import Filter from '../components/Filter.vue'
 import type { Country } from '../types'
 export default defineComponent({
-	name: 'HomePage',
+	name: 'Home',
 	components: {
 		HomeSkeleton,
 		Searchbar,
@@ -81,7 +67,6 @@ export default defineComponent({
 		const store = useStore()
 		let query = ref<string>('')
 		let region = ref<string>('worldwide')
-		const loadAmount = ref<number>(16)
 		let countriesList = ref<ComputedRef<Country[]>>(
 			computed(() => store.state.country.countryList)
 		)
@@ -93,10 +78,6 @@ export default defineComponent({
 
 		const filterCountiesByRegion = (selectedRegion: string): void => {
 			region.value = selectedRegion
-		}
-
-		const loadMore = (): void => {
-			loadAmount.value += 16
 		}
 
 		countriesList = ref<ComputedRef<Country[]>>(
@@ -113,8 +94,6 @@ export default defineComponent({
 			countriesList,
 			filterCountiesByName,
 			filterCountiesByRegion,
-			loadAmount,
-			loadMore,
 		}
 	},
 })

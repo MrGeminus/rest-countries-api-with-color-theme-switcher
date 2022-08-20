@@ -6,7 +6,7 @@
 			rounded
 			bg-elements-light
 			dark:bg-elements-dark
-			shadow-md
+			shadow-custom-2
 			animate-pulse
 		"
 	>

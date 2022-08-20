@@ -9,11 +9,12 @@
 			dark:text-content-light
 			text-sm
 			lg:text-base
-			font-light font-nunitoSans
+			font-light
 			text-center
 			bg-elements-light
 			dark:bg-elements-dark
-			border-t-2 border-t-[#e5e7eb]
+			z-10
+			shadow-custom-1
 		"
 	>
 		<p>
@@ -21,8 +22,8 @@
 			<a
 				class="
 					underline
-					hover:no-underline
 					outline-none
+					hover:no-underline
 					focus-visible:outline-elements-dark
 					dark:focus-visible:outline-elements-light
 				"
@@ -37,8 +38,8 @@
 			<a
 				class="
 					underline
-					hover:no-underline
 					outline-none
+					hover:no-underline
 					focus-visible:outline-elements-dark
 					dark:focus-visible:outline-elements-light
 				"

@@ -1,28 +1,28 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-import HomePage from '../views/HomePage.vue';
-import DetailPage from '../views/DetailPage.vue';
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
+import Home from '../views/Home.vue';
+import CountryDetails from '../views/CountryDetails.vue';
 import NotFound from '../views/NotFound.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'HomePage',
-    component: HomePage,
+    name: 'Home',
+    component: Home,
     meta: {
       title: 'REST countries API with color theme switcher | Home'
     }
   },
   {
     path: '/country/:countryName',
-    name: 'DetailPage',
-    component: DetailPage,
+    name: 'CountryDetails',
+    component: CountryDetails,
     meta: {
       title: 'REST countries API with color theme switcher | '
     },
     props: true
   },
   {
-    path: '/:catchAll(.*)',
+    path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: NotFound,
     meta: {

@@ -5,33 +5,30 @@
 			relative
 			w-full
 			max-w-29
+			md:ml-4
 			mt-11
-			md:mt-0 md:ml-4
+			md:mt-0
+			rounded
 			text-content-dark
 			dark:text-content-light
 			text-sm
-			font-semibold font-nunitoSans
-			rounded
-			shadow-md
+			font-semibold
 		"
 		@click.right="closeOptionsList"
 	>
 		<div
 			:class="[
-				'w-full h-full px-5 py-4 rounded',
+				'w-full h-full px-5 py-4 rounded shadow-custom-2',
 				'bg-elements-light dark:bg-elements-dark',
-				'cursor-pointer z-10 outline-none',
+				'z-10 outline-none cursor-pointer',
 				'focus-visible:outline-elements-dark',
 				'dark:focus-visible:outline-elements-light',
-				'after:absolute',
-				'after:top-0',
-				'after:right-5',
-				'after:w-3',
-				'after:h-full',
+				'after:absolute after:top-0 after:right-5',
+				'after:w-3 after:h-full',
 				'after:bg-chevron-down-icon-dark',
 				'after:dark:bg-chevron-down-icon-light',
 				'after:bg-0.65 after:bg-center after:bg-no-repeat',
-				'after:transition-all',
+				'after:transition-transform motion-reduce:after:transition-none',
 				!hideOptionList ? 'after:rotate-180' : '',
 			]"
 			role="combobox"
@@ -52,12 +49,14 @@
 		<div
 			ref="optionList"
 			id="optionList"
+			:aria-hidden="hideOptionList ? 'true' : 'false'"
 			:class="[
-				'absolute top-15 inset-x-0 rounded',
-				hideOptionList ? 'hidden' : 'block',
-				'py-4',
+				'absolute top-15 inset-x-0 block',
+				'py-4 rounded shadow-custom-2',
 				'bg-elements-light dark:bg-elements-dark',
-				'z-10',
+				'z-10 scale-y-0 origin-top transition-all delay-150',
+				'motion-reduce:transition-none',
+				hideOptionList ? '' : 'scale-y-100',
 			]"
 			role="listbox"
 			tabindex="-1"
@@ -66,17 +65,16 @@
 				:key="option.value"
 				v-for="option in options"
 				:id="option.value"
-				class="
-					px-6
-					py-1
-					hover:text-content-light hover:bg-elements-dark
-					dark:hover:text-content-dark dark:hover:bg-elements-light
-					cursor-pointer
-					z-20
-					outline-none outline-offset-i-2
-					focus:text-content-light focus:bg-elements-dark
-					dark:focus:text-content-dark dark:focus:bg-elements-light
-				"
+				:class="[
+					'px-6 py-1',
+					'z-20 cursor-pointer outline-none outline-offset-i-2',
+					'opacity-0 transition-opacity motion-reduce:transition-none',
+					'hover:text-content-light dark:hover:text-content-dark',
+					'hover:bg-elements-dark dark:hover:bg-elements-light',
+					'focus:text-content-light dark:focus:text-content-dark',
+					'dark:focus:bg-elements-light focus:bg-elements-dark',
+					hideOptionList ? '' : 'opacity-100 delay-200',
+				]"
 				role="option"
 				:aria-selected="option.selected"
 				@click="selectOption(option.value)"
@@ -108,6 +106,7 @@ export default defineComponent({
 		const optionList = ref<HTMLElement | null>(null)
 		const hideOptionList = ref<boolean>(true)
 		const options = ref<Option[]>([
+			{ text: 'All Regions', value: 'Worldwide', selected: false },
 			{ text: 'Africa', value: 'Africa', selected: false },
 			{ text: 'America', value: 'Americas', selected: false },
 			{ text: 'Asia', value: 'Asia', selected: false },
